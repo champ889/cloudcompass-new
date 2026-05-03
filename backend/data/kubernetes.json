@@ -1,0 +1,130 @@
+{
+  "providers": {
+    "AWS": {
+      "service": "Amazon EKS",
+      "fullName": "Elastic Kubernetes Service",
+      "color": "#FF9900",
+      "docs": "https://docs.aws.amazon.com/eks/",
+      "overview": "Fully managed Kubernetes control plane. Integrates deeply with AWS services like IAM, VPC CNI, ALB, and ECR.",
+      "clusterPricing": {
+        "controlPlanePerHour": 0.10,
+        "controlPlanePerMonth": 73,
+        "notes": "$0.10/hr per cluster (~$73/mo). Worker nodes billed separately as EC2."
+      },
+      "nodePricing": {
+        "smallPerHour": 0.048,
+        "mediumPerHour": 0.096,
+        "largePerHour": 0.192,
+        "notes": "e.g. t3.medium: $0.0464/hr, m5.large: $0.096/hr"
+      },
+      "fargatePerVCPUHour": 0.04048,
+      "fargatePerGBHour": 0.004445,
+      "features": {
+        "managedNodeGroups": true,
+        "spotInstances": true,
+        "fargateServerless": true,
+        "autoScaling": true,
+        "multiRegion": false,
+        "gitOps": true,
+        "serviceMesh": "AWS App Mesh / Istio",
+        "registry": "ECR (Elastic Container Registry)",
+        "cni": "AWS VPC CNI (pods get VPC IPs)",
+        "ingressController": "AWS Load Balancer Controller (ALB)",
+        "secretsManager": "AWS Secrets Manager / SSM",
+        "monitoring": "CloudWatch Container Insights",
+        "upgrades": "Managed in-place upgrades",
+        "multiTenancy": "Namespaces + IRSA (IAM Roles for Service Accounts)"
+      },
+      "pros": ["Deep AWS service integration", "IRSA for fine-grained IAM", "EKS Anywhere for on-prem", "Bottlerocket OS optimized for containers", "Karpenter for fast node autoscaling"],
+      "cons": ["$0.10/hr control plane fee even for small clusters", "Complex networking setup (VPC CNI)", "Console UX less polished than competitors", "Fargate has significant limitations (no DaemonSets, no privileged pods)"]
+    },
+    "Azure": {
+      "service": "AKS",
+      "fullName": "Azure Kubernetes Service",
+      "color": "#0078D4",
+      "docs": "https://learn.microsoft.com/en-us/azure/aks/",
+      "overview": "Managed Kubernetes with free control plane. Strong enterprise integration with Active Directory, Azure Monitor, and Azure DevOps.",
+      "clusterPricing": {
+        "controlPlanePerHour": 0,
+        "controlPlanePerMonth": 0,
+        "notes": "Control plane is FREE. Only pay for worker node VMs."
+      },
+      "nodePricing": {
+        "smallPerHour": 0.052,
+        "mediumPerHour": 0.096,
+        "largePerHour": 0.192,
+        "notes": "e.g. Standard_B2s: $0.052/hr, Standard_D2s_v3: $0.096/hr"
+      },
+      "fargatePerVCPUHour": 0,
+      "fargatePerGBHour": 0,
+      "features": {
+        "managedNodeGroups": true,
+        "spotInstances": true,
+        "fargateServerless": false,
+        "autoScaling": true,
+        "multiRegion": false,
+        "gitOps": true,
+        "serviceMesh": "Open Service Mesh / Istio / Linkerd",
+        "registry": "Azure Container Registry (ACR)",
+        "cni": "Azure CNI or kubenet",
+        "ingressController": "Application Gateway Ingress Controller",
+        "secretsManager": "Azure Key Vault",
+        "monitoring": "Azure Monitor for Containers / Prometheus",
+        "upgrades": "Auto-upgrade channels (patch, stable, rapid)",
+        "multiTenancy": "Namespaces + Azure AD Workload Identity"
+      },
+      "pros": ["Free control plane — lowest entry cost", "Azure AD integration out of the box", "Node auto-provisioning (like Karpenter)", "AKS Automatic mode for simplified ops", "Strong GitOps support via Flux"],
+      "cons": ["Virtual Nodes (serverless) less mature than Fargate", "Networking can be complex with Azure CNI", "Node pool upgrades can be slow", "Less flexible IAM compared to AWS IRSA"]
+    },
+    "GCP": {
+      "service": "GKE",
+      "fullName": "Google Kubernetes Engine",
+      "color": "#4285F4",
+      "docs": "https://cloud.google.com/kubernetes-engine/docs",
+      "overview": "The original managed Kubernetes — Google invented Kubernetes. GKE offers the most mature and feature-rich managed K8s experience.",
+      "clusterPricing": {
+        "controlPlanePerHour": 0.10,
+        "controlPlanePerMonth": 73,
+        "notes": "$0.10/hr per cluster. Free for Autopilot's first zonal cluster. Standard mode has a free tier for 1 zonal cluster."
+      },
+      "nodePricing": {
+        "smallPerHour": 0.048,
+        "mediumPerHour": 0.096,
+        "largePerHour": 0.190,
+        "notes": "e.g. e2-medium: $0.040/hr, n1-standard-2: $0.095/hr"
+      },
+      "fargatePerVCPUHour": 0.0445,
+      "fargatePerGBHour": 0.00489,
+      "features": {
+        "managedNodeGroups": true,
+        "spotInstances": true,
+        "fargateServerless": true,
+        "autoScaling": true,
+        "multiRegion": true,
+        "gitOps": true,
+        "serviceMesh": "Cloud Service Mesh (Anthos) / Istio",
+        "registry": "Artifact Registry / Container Registry",
+        "cni": "GKE Dataplane V2 (eBPF-based)",
+        "ingressController": "GKE Ingress (Google Cloud LB)",
+        "secretsManager": "Secret Manager",
+        "monitoring": "Cloud Monitoring + Managed Prometheus",
+        "upgrades": "Release channels (rapid, regular, stable) with auto-upgrade",
+        "multiTenancy": "Namespaces + Workload Identity"
+      },
+      "pros": ["Invented Kubernetes — deepest expertise", "GKE Autopilot: fully managed nodes (pay per pod, not node)", "Multi-cluster / multi-region with Anthos", "eBPF dataplane for network performance", "Best-in-class release channels & auto-upgrade"],
+      "cons": ["Autopilot has pod resource restrictions", "Anthos licensing adds significant cost", "GCP ecosystem less familiar for many enterprises", "Egress costs add up for data-heavy workloads"]
+    }
+  },
+  "comparisonMatrix": {
+    "Free Control Plane": { "AWS": false, "Azure": true, "GCP": false },
+    "Serverless Nodes": { "AWS": true, "Azure": false, "GCP": true },
+    "Multi-Region Clusters": { "AWS": false, "Azure": false, "GCP": true },
+    "eBPF Networking": { "AWS": false, "Azure": false, "GCP": true },
+    "Managed Prometheus": { "AWS": false, "Azure": true, "GCP": true },
+    "GitOps Native": { "AWS": true, "Azure": true, "GCP": true },
+    "Windows Node Pools": { "AWS": true, "Azure": true, "GCP": true },
+    "GPU Node Support": { "AWS": true, "Azure": true, "GCP": true },
+    "ARM/Graviton Nodes": { "AWS": true, "Azure": true, "GCP": true },
+    "Free Tier Cluster": { "AWS": false, "Azure": false, "GCP": true }
+  }
+}

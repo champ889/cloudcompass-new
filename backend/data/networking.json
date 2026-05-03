@@ -1,0 +1,148 @@
+{
+  "categories": {
+    "VPC": {
+      "label": "Virtual Private Cloud",
+      "description": "Core private networking and IP address management",
+      "providers": {
+        "AWS": {
+          "service": "Amazon VPC",
+          "highlights": ["Default VPC per region", "Up to 5 VPCs per region (soft limit)", "IPv4 & IPv6 dual-stack", "VPC Peering & Transit Gateway", "Flow Logs to S3/CloudWatch"],
+          "pricing": { "base": 0, "notes": "VPC itself is free; charges apply for NAT Gateway, VPN, etc." },
+          "docs": "https://docs.aws.amazon.com/vpc/"
+        },
+        "Azure": {
+          "service": "Azure Virtual Network (VNet)",
+          "highlights": ["Up to 1000 VNets per subscription", "IPv4 & IPv6 support", "VNet Peering across regions", "Network Security Groups (NSG)", "Integrated DDoS Basic protection"],
+          "pricing": { "base": 0, "notes": "VNet itself is free; charges for peering, VPN Gateway, etc." },
+          "docs": "https://learn.microsoft.com/en-us/azure/virtual-network/"
+        },
+        "GCP": {
+          "service": "Google Cloud VPC",
+          "highlights": ["Global VPC spans all regions by default", "Auto mode or custom subnets", "Shared VPC for org-wide networking", "VPC Flow Logs", "Private Google Access"],
+          "pricing": { "base": 0, "notes": "VPC is free; egress and other resources billed separately." },
+          "docs": "https://cloud.google.com/vpc"
+        }
+      }
+    },
+    "Load_Balancer": {
+      "label": "Load Balancing",
+      "description": "Traffic distribution across compute resources",
+      "providers": {
+        "AWS": {
+          "service": "Elastic Load Balancing (ELB)",
+          "highlights": ["Application LB (L7)", "Network LB (L4, ultra-low latency)", "Gateway LB for appliances", "Global Accelerator for global traffic", "Free tier: 750 hrs/mo (12 months)"],
+          "pricing": { "perHour": 0.008, "perLCU": 0.008, "notes": "ALB: $0.008/hr + $0.008/LCU-hr" },
+          "docs": "https://docs.aws.amazon.com/elasticloadbalancing/"
+        },
+        "Azure": {
+          "service": "Azure Load Balancer + App Gateway",
+          "highlights": ["Standard LB (L4)", "Application Gateway (L7 + WAF)", "Cross-region Load Balancer", "Traffic Manager (DNS-based global)", "Front Door for global HTTP routing"],
+          "pricing": { "perHour": 0.008, "perRule": 0.008, "notes": "Standard LB: $0.008/hr + $0.008/rule/hr" },
+          "docs": "https://learn.microsoft.com/en-us/azure/load-balancer/"
+        },
+        "GCP": {
+          "service": "Cloud Load Balancing",
+          "highlights": ["Global HTTP(S) LB (anycast, L7)", "Regional TCP/UDP LB (L4)", "Internal LB for private traffic", "No pre-warming required", "Integrated Cloud Armor (WAF)"],
+          "pricing": { "perRule": 0.008, "perGb": 0.008, "notes": "Forwarding rules: $0.008/hr; ingress data processed separately" },
+          "docs": "https://cloud.google.com/load-balancing"
+        }
+      }
+    },
+    "CDN": {
+      "label": "Content Delivery Network",
+      "description": "Edge caching and content acceleration globally",
+      "providers": {
+        "AWS": {
+          "service": "Amazon CloudFront",
+          "highlights": ["450+ PoPs globally", "Lambda@Edge & CloudFront Functions", "Origin Shield for cache hit rate", "Free tier: 1TB/mo + 10M requests", "Real-time logs & metrics"],
+          "pricing": { "perGbFirst10TB": 0.085, "per10kRequests": 0.0075, "notes": "US/EU: $0.085/GB first 10TB/mo" },
+          "docs": "https://docs.aws.amazon.com/cloudfront/"
+        },
+        "Azure": {
+          "service": "Azure CDN / Front Door",
+          "highlights": ["Multiple CDN providers (Akamai, Verizon, Microsoft)", "Front Door for global HTTP acceleration", "Rules Engine for routing logic", "WAF integration on Front Door", "Dynamic site acceleration"],
+          "pricing": { "perGbFirst10TB": 0.087, "per10kRequests": 0.0075, "notes": "Zone 1 (NA/EU): $0.087/GB first 10TB/mo" },
+          "docs": "https://learn.microsoft.com/en-us/azure/cdn/"
+        },
+        "GCP": {
+          "service": "Cloud CDN",
+          "highlights": ["130+ PoPs via Google's backbone", "Anycast IP for low-latency routing", "Cache invalidation API", "Cloud Armor WAF integration", "Signed URLs & cookies for auth"],
+          "pricing": { "perGbFirst10TB": 0.080, "per10kRequests": 0.0075, "notes": "NA/EU: $0.08/GB first 10TB/mo — cheapest of the three" },
+          "docs": "https://cloud.google.com/cdn"
+        }
+      }
+    },
+    "DNS": {
+      "label": "DNS & Traffic Management",
+      "description": "Domain name resolution and global traffic routing",
+      "providers": {
+        "AWS": {
+          "service": "Amazon Route 53",
+          "highlights": ["100% SLA for authoritative DNS", "Latency, geolocation, weighted routing", "Health checks & failover", "Private hosted zones for VPCs", "Domain registration included"],
+          "pricing": { "perHostedZone": 0.50, "perMillionQueries": 0.40, "notes": "$0.50/hosted zone/mo, $0.40/million queries" },
+          "docs": "https://docs.aws.amazon.com/route53/"
+        },
+        "Azure": {
+          "service": "Azure DNS + Traffic Manager",
+          "highlights": ["Anycast DNS network", "Traffic Manager for DNS-based LB", "Private DNS zones for VNets", "Alias records for Azure resources", "DNSSEC support"],
+          "pricing": { "perZone": 0.50, "perMillionQueries": 0.40, "notes": "$0.50/zone/mo first 25 zones, then $0.10/zone" },
+          "docs": "https://learn.microsoft.com/en-us/azure/dns/"
+        },
+        "GCP": {
+          "service": "Cloud DNS + Cloud Domains",
+          "highlights": ["100% SLA via anycast", "DNSSEC enabled", "Managed zones (public & private)", "DNS Peering across VPCs", "Low TTL for fast propagation"],
+          "pricing": { "perZone": 0.20, "perMillionQueries": 0.40, "notes": "$0.20/zone/mo — significantly cheaper than AWS/Azure for zones" },
+          "docs": "https://cloud.google.com/dns"
+        }
+      }
+    },
+    "VPN_Connectivity": {
+      "label": "VPN & Private Connectivity",
+      "description": "Secure connections between on-premises and cloud",
+      "providers": {
+        "AWS": {
+          "service": "AWS VPN + Direct Connect",
+          "highlights": ["Site-to-Site VPN (IPSec)", "Client VPN (OpenVPN based)", "Direct Connect: 1Gbps–100Gbps", "Transit Gateway for hub-spoke", "Accelerated VPN via Global Accelerator"],
+          "pricing": { "vpnPerHour": 0.05, "dataPerGb": 0.09, "notes": "VPN: $0.05/hr + $0.09/GB data; Direct Connect from $0.30/hr" },
+          "docs": "https://docs.aws.amazon.com/vpn/"
+        },
+        "Azure": {
+          "service": "Azure VPN Gateway + ExpressRoute",
+          "highlights": ["Policy-based & route-based VPN", "VPN Gateway SKUs: Basic to VpnGw5", "ExpressRoute: 50Mbps–100Gbps", "Virtual WAN for global branch connectivity", "ExpressRoute Global Reach"],
+          "pricing": { "vpnPerHour": 0.04, "dataPerGb": 0.087, "notes": "Basic VPN: $0.04/hr; ExpressRoute from $0.055/hr" },
+          "docs": "https://learn.microsoft.com/en-us/azure/vpn-gateway/"
+        },
+        "GCP": {
+          "service": "Cloud VPN + Interconnect",
+          "highlights": ["HA VPN (99.99% SLA)", "Classic VPN (single gateway)", "Dedicated Interconnect: 10–100Gbps", "Partner Interconnect from 50Mbps", "Network Connectivity Center hub"],
+          "pricing": { "vpnPerHour": 0.05, "dataPerGb": 0.08, "notes": "HA VPN: $0.05/hr per tunnel; Interconnect from $0.04/hr per 10Gbps" },
+          "docs": "https://cloud.google.com/vpn"
+        }
+      }
+    },
+    "NAT_Firewall": {
+      "label": "NAT & Firewall",
+      "description": "Outbound internet access control and network security",
+      "providers": {
+        "AWS": {
+          "service": "NAT Gateway + AWS Network Firewall",
+          "highlights": ["Managed NAT Gateway (HA by default)", "NAT charged per AZ — expensive at scale", "Network Firewall: stateful inspection", "Security Groups + NACLs", "AWS WAF for L7 filtering"],
+          "pricing": { "natPerHour": 0.059, "natPerGb": 0.059, "notes": "NAT Gateway: $0.059/hr + $0.059/GB — one of AWS's biggest cost surprises" },
+          "docs": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html"
+        },
+        "Azure": {
+          "service": "Azure NAT Gateway + Azure Firewall",
+          "highlights": ["NAT Gateway: zone-resilient outbound", "No SNAT port exhaustion issues", "Azure Firewall: FQDN filtering, threat intel", "Azure Firewall Premium: IDS/IPS", "DDoS Protection Standard"],
+          "pricing": { "natPerHour": 0.045, "natPerGb": 0.045, "notes": "NAT Gateway: $0.045/hr + $0.045/GB processed" },
+          "docs": "https://learn.microsoft.com/en-us/azure/nat-gateway/"
+        },
+        "GCP": {
+          "service": "Cloud NAT + Cloud Armor",
+          "highlights": ["Cloud NAT: no per-instance config needed", "Automatic port allocation", "Cloud Armor: DDoS & WAF", "VPC Firewall Rules (stateful)", "Firewall Insights for optimization"],
+          "pricing": { "natPerHour": 0.044, "natPerGb": 0.045, "notes": "Cloud NAT: $0.044/hr (gateway) + $0.045/GB" },
+          "docs": "https://cloud.google.com/nat"
+        }
+      }
+    }
+  }
+}
