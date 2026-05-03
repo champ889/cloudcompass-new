@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useMediaQuery from './useMediaQuery';
+import cloudCompassLogo from '../assets/cloud-compass-logo.png';
 
 const Header = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
@@ -61,7 +62,7 @@ const Header = () => {
           <div className="flex justify-between items-center h-16 px-4 relative z-50">
             <div className="w-8" />
             <div className="absolute left-1/2 transform -translate-x-1/2">
-              <span className="text-xl font-bold text-blue-400">CloudCompass</span>
+              <img src={cloudCompassLogo} alt="Cloud Compass Logo" className="h-16" />
             </div>
             <button
               className="hamburger-menu text-2xl p-2 focus:outline-none z-50"
@@ -79,7 +80,7 @@ const Header = () => {
             <div className="mx-auto px-6 lg:px-8 w-full">
               <div className="flex items-center h-20">
                 <div className="flex-1 flex justify-start">
-                  <span className="text-xl font-bold text-blue-400">CloudCompass</span>
+                  <img src={cloudCompassLogo} alt="Cloud Compass Logo" className="h-20" />
                 </div>
                 <div className="hidden md:flex items-center space-x-8">{navLinks}</div>
                 <div className="flex-1 flex justify-end"><ThemeToggle /></div>
