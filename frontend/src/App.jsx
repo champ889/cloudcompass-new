@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import NetworkingComparison from './components/NetworkingComparison';
 import KubernetesComparison from './components/KubernetesComparison';
 import CostCalculator from './components/CostCalculator';
+import Newsletter from './components/Newsletter';
 
 function HomePage() {
   return (
@@ -14,6 +15,7 @@ function HomePage() {
       <NetworkingComparison />
       <KubernetesComparison />
       <CostCalculator />
+      <Newsletter />
     </main>
   );
 }
