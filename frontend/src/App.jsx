@@ -7,11 +7,13 @@ import NetworkingComparison from './components/NetworkingComparison';
 import KubernetesComparison from './components/KubernetesComparison';
 import CostCalculator from './components/CostCalculator';
 import Newsletter from './components/Newsletter';
+import CloudNews from './components/CloudNews';
 
 function HomePage() {
   return (
     <main className="max-w-7xl mx-auto px-4">
       <Hero />
+      <CloudNews />
       <NetworkingComparison />
       <KubernetesComparison />
       <CostCalculator />

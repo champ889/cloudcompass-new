@@ -6,6 +6,7 @@ const path = require('path');
 
 const networkingRouter = require('./routes/networking');
 const kubernetesRouter = require('./routes/kubernetes');
+const newsRouter = require('./routes/news');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -19,6 +20,7 @@ app.use('/icons', express.static(path.join(__dirname, 'icons')));
 // API routes
 app.use('/api/networking', networkingRouter);
 app.use('/api/kubernetes', kubernetesRouter);
+app.use('/api/news', newsRouter);
 
 // Frontend serving
 const frontendDist = isProd
