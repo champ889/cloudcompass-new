@@ -37,10 +37,10 @@ const Header = () => {
   const navLinks = (
     <>
       <a href="#home" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('home'); }}>Home</a>
-      <a href="#news" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('news'); }}>News</a>
+      <a href="#calculator" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('calculator'); }}>Calculator</a>
       <a href="#networking" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('networking'); }}>Networking</a>
       <a href="#kubernetes" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('kubernetes'); }}>Kubernetes</a>
-      <a href="#calculator" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('calculator'); }}>Calculator</a>
+      <a href="#news" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('news'); }}>News</a>
     </>
   );
 

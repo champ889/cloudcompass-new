@@ -13,11 +13,11 @@ function HomePage() {
   return (
     <main className="max-w-7xl mx-auto px-4">
       <Hero />
-      <CloudNews />
+      <CostCalculator />
       <NetworkingComparison />
       <KubernetesComparison />
-      <CostCalculator />
       <Newsletter />
+      <CloudNews />
     </main>
   );
 }
