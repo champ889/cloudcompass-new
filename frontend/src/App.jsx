@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Hero from './components/Hero';
 import NetworkingComparison from './components/NetworkingComparison';
 import KubernetesComparison from './components/KubernetesComparison';
+import AICloud from './components/AICloud';
 import CostCalculator from './components/CostCalculator';
 import Newsletter from './components/Newsletter';
 import CloudNews from './components/CloudNews';
@@ -16,6 +17,7 @@ function HomePage() {
       <CostCalculator />
       <NetworkingComparison />
       <KubernetesComparison />
+      <AICloud />
       <Newsletter />
       <CloudNews />
     </main>

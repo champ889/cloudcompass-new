@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import useMediaQuery from './useMediaQuery';
 
 const Header = () => {
@@ -40,6 +39,7 @@ const Header = () => {
       <a href="#calculator" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('calculator'); }}>Calculator</a>
       <a href="#networking" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('networking'); }}>Networking</a>
       <a href="#kubernetes" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('kubernetes'); }}>Kubernetes</a>
+      <a href="#aicloud" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('aicloud'); }}>AI Cloud</a>
       <a href="#news" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('news'); }}>News</a>
     </>
   );
