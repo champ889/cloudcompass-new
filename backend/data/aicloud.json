@@ -8,7 +8,13 @@
       "ticker": "CRWV (NASDAQ)",
       "docs": "https://docs.coreweave.com",
       "website": "https://coreweave.com",
-      "gpus": ["H100 SXM", "H200", "A100", "GB200", "GB300"],
+      "gpus": [
+        "H100 SXM",
+        "H200",
+        "A100",
+        "GB200",
+        "GB300"
+      ],
       "networking": {
         "interconnect": "InfiniBand (SHARP-enabled)",
         "bandwidth": "100Gbps inter-node",
@@ -23,9 +29,16 @@
         "managed": true,
         "bareMetal": true,
         "hypervisor": false,
-        "features": ["Bare-metal pods", "NVIDIA GPU Operator", "Kubeflow support", "Slurm integration", "InfiniBand-aware scheduling", "Multi-cluster federation"],
+        "features": [
+          "Bare-metal pods",
+          "NVIDIA GPU Operator",
+          "Kubeflow support",
+          "Slurm integration",
+          "InfiniBand-aware scheduling",
+          "Multi-cluster federation"
+        ],
         "controlPlane": "Fully managed",
-        "notes": "No VMs — Kubernetes runs directly on bare metal. Manifests are portable to any K8s provider."
+        "notes": "No VMs \u2014 Kubernetes runs directly on bare metal. Manifests are portable to any K8s provider."
       },
       "pricing": {
         "a100PerHour": 2.39,
@@ -37,7 +50,7 @@
         "notes": "A la carte: GPU + vCPU + RAM billed separately. All-in cost typically $3-4/hr for A100 node."
       },
       "pros": [
-        "No hypervisor — near bare-metal GPU performance",
+        "No hypervisor \u2014 near bare-metal GPU performance",
         "BlueField DPUs free GPUs from networking overhead",
         "First to market with GB200 and GB300 (Blackwell)",
         "Zero egress and zero internal transfer fees",
@@ -49,9 +62,31 @@
         "Requires Kubernetes expertise to operate",
         "Limited regions compared to hyperscalers",
         "Not suited for small experimental workloads",
-        "Enterprise-focused — less developer-friendly UX"
+        "Enterprise-focused \u2014 less developer-friendly UX"
       ],
-      "bestFor": "Large enterprise AI training, 100+ GPU clusters, production inference at scale"
+      "bestFor": "Large enterprise AI training, 100+ GPU clusters, production inference at scale",
+      "inference": {
+        "available": true,
+        "product": "CoreWeave Inference",
+        "type": "Managed inference (enterprise)",
+        "pricingModel": "Per GPU-hour (dedicated endpoint)",
+        "openAICompatible": true,
+        "selfServe": false,
+        "coldStart": "N/A \u2014 dedicated always-on",
+        "scaleToZero": false,
+        "supportedModels": [
+          "Llama 3.x",
+          "Mistral",
+          "Falcon",
+          "Custom fine-tuned models"
+        ],
+        "modelCount": "Bring your own or CoreWeave catalogue",
+        "batchInference": true,
+        "streamingSupport": true,
+        "sla": "Enterprise SLA \u2014 contact sales",
+        "notes": "Enterprise-only. Dedicated GPU endpoints, not shared. Ideal for teams needing guaranteed throughput and custom model deployment. Contact sales for pricing.",
+        "link": "https://www.coreweave.com/products/inference"
+      }
     },
     "Lambda": {
       "color": "#e85d2a",
@@ -61,7 +96,12 @@
       "ticker": "Private",
       "docs": "https://docs.lambda.ai",
       "website": "https://lambda.ai",
-      "gpus": ["H100 SXM", "H200", "B200", "A100"],
+      "gpus": [
+        "H100 SXM",
+        "H200",
+        "B200",
+        "A100"
+      ],
       "networking": {
         "interconnect": "NVIDIA Quantum-2 InfiniBand",
         "bandwidth": "3.2Tb/s per 8xB200 node",
@@ -76,22 +116,30 @@
         "managed": true,
         "bareMetal": true,
         "hypervisor": false,
-        "features": ["1-Click Cluster deployment", "Kubeflow", "Ray", "Volcano", "NVIDIA SHARP integration", "Jupyter Lab built-in", "SSH access"],
-        "controlPlane": "Fully managed — upgrades, HA, node repair included",
+        "features": [
+          "1-Click Cluster deployment",
+          "Kubeflow",
+          "Ray",
+          "Volcano",
+          "NVIDIA SHARP integration",
+          "Jupyter Lab built-in",
+          "SSH access"
+        ],
+        "controlPlane": "Fully managed \u2014 upgrades, HA, node repair included",
         "notes": "Single-tenant only. All K8s components stay local to the cluster. 24/7 proactive monitoring."
       },
       "pricing": {
         "a100PerHour": 1.29,
         "h100PerHour": 2.89,
-        "h200PerHour": 4.50,
+        "h200PerHour": 4.5,
         "egressPerGb": 0,
         "reservedDiscount": "Up to 47% off (1-5 year reservations)",
         "billingUnit": "Per hour",
-        "notes": "All-inclusive flat hourly rate — no separate CPU/RAM charges. Cheapest on-demand H100 in market."
+        "notes": "All-inclusive flat hourly rate \u2014 no separate CPU/RAM charges. Cheapest on-demand H100 in market."
       },
       "pros": [
         "Best on-demand H100 price (~$2.89/hr)",
-        "All-inclusive pricing — no surprise CPU/RAM charges",
+        "All-inclusive pricing \u2014 no surprise CPU/RAM charges",
         "Pre-installed ML stack ready out of the box",
         "Single-tenant dedicated hardware",
         "Quantum-2 InfiniBand for distributed training",
@@ -105,7 +153,24 @@
         "No serverless GPU offering",
         "Fewer GPU types than marketplace providers"
       ],
-      "bestFor": "ML teams wanting best price, clean UX, and pre-configured environments without enterprise complexity"
+      "bestFor": "ML teams wanting best price, clean UX, and pre-configured environments without enterprise complexity",
+      "inference": {
+        "available": false,
+        "product": "None",
+        "type": "GPU-as-a-Service only",
+        "pricingModel": "N/A",
+        "openAICompatible": false,
+        "selfServe": false,
+        "coldStart": "N/A",
+        "scaleToZero": false,
+        "supportedModels": [],
+        "modelCount": "No managed inference \u2014 deploy your own (vLLM, TGI etc.)",
+        "batchInference": false,
+        "streamingSupport": false,
+        "sla": "N/A",
+        "notes": "Lambda has no managed inference product. You get raw GPU instances with pre-installed frameworks (vLLM, TensorRT-LLM, Hugging Face TGI). You manage serving yourself.",
+        "link": "https://lambda.ai"
+      }
     },
     "RunPod": {
       "color": "#7c5cbf",
@@ -115,7 +180,13 @@
       "ticker": "Private",
       "docs": "https://docs.runpod.io",
       "website": "https://runpod.io",
-      "gpus": ["H100 SXM", "A100", "RTX 4090", "RTX 3090", "L40S"],
+      "gpus": [
+        "H100 SXM",
+        "A100",
+        "RTX 4090",
+        "RTX 3090",
+        "L40S"
+      ],
       "networking": {
         "interconnect": "Standard Ethernet (datacenter tier)",
         "bandwidth": "Up to 10Gbps",
@@ -130,7 +201,13 @@
         "managed": false,
         "bareMetal": false,
         "hypervisor": true,
-        "features": ["Docker template library", "50+ pre-built AI templates", "Serverless GPU functions", "Pod networking", "Persistent volumes"],
+        "features": [
+          "Docker template library",
+          "50+ pre-built AI templates",
+          "Serverless GPU functions",
+          "Pod networking",
+          "Persistent volumes"
+        ],
         "controlPlane": "Self-managed",
         "notes": "No native managed Kubernetes. Best for single-GPU workloads or deploy your own K8s cluster."
       },
@@ -138,13 +215,13 @@
         "a100PerHour": 1.64,
         "h100PerHour": 3.19,
         "h200PerHour": null,
-        "egressPerGb": 0.10,
+        "egressPerGb": 0.1,
         "reservedDiscount": "Spot instances up to 90% off",
         "billingUnit": "Per minute",
         "notes": "Per-minute billing. Spot instances offer massive savings for interruptible workloads."
       },
       "pros": [
-        "Per-minute billing — no rounding to the hour",
+        "Per-minute billing \u2014 no rounding to the hour",
         "Spot instances up to 90% cheaper",
         "Consumer GPUs available (RTX 4090 etc.)",
         "Serverless GPU with sub-3s cold starts",
@@ -158,7 +235,31 @@
         "Not suited for large multi-node training clusters",
         "Less enterprise reliability than CoreWeave/Lambda"
       ],
-      "bestFor": "Researchers, students, and startups needing cheap GPU access for experimentation and inference"
+      "bestFor": "Researchers, students, and startups needing cheap GPU access for experimentation and inference",
+      "inference": {
+        "available": true,
+        "product": "RunPod Serverless",
+        "type": "Serverless per-request inference",
+        "pricingModel": "Per compute-second (GPU-sec)",
+        "openAICompatible": true,
+        "selfServe": true,
+        "coldStart": "Under 200ms (FlashBoot) \u2014 48% of requests",
+        "scaleToZero": true,
+        "supportedModels": [
+          "Llama 3.x",
+          "Mistral",
+          "Stable Diffusion",
+          "Whisper",
+          "SDXL",
+          "Custom Docker"
+        ],
+        "modelCount": "1,000+ community templates + custom Docker",
+        "batchInference": true,
+        "streamingSupport": true,
+        "sla": "Secure Cloud tier \u2014 production grade",
+        "notes": "Best for variable traffic. Pay only when requests come in \u2014 scale to zero when idle. 10,000 requests/day at 2s average costs ~$30-50/mo vs $1,430/mo for always-on H100.",
+        "link": "https://www.runpod.io/serverless-gpu"
+      }
     },
     "Nebius": {
       "color": "#0077cc",
@@ -168,7 +269,11 @@
       "ticker": "NBIS (NASDAQ)",
       "docs": "https://docs.nebius.com",
       "website": "https://nebius.com",
-      "gpus": ["H100 SXM", "H200", "L40S"],
+      "gpus": [
+        "H100 SXM",
+        "H200",
+        "L40S"
+      ],
       "networking": {
         "interconnect": "InfiniBand",
         "bandwidth": "Up to 400Gbps per node",
@@ -183,14 +288,20 @@
         "managed": true,
         "bareMetal": false,
         "hypervisor": true,
-        "features": ["Managed control plane", "GPU node pools", "Auto-scaling", "Persistent volumes", "OpenStack-compatible storage"],
+        "features": [
+          "Managed control plane",
+          "GPU node pools",
+          "Auto-scaling",
+          "Persistent volumes",
+          "OpenStack-compatible storage"
+        ],
         "controlPlane": "Fully managed",
         "notes": "Best for EU teams needing managed K8s with GPU support and data sovereignty."
       },
       "pricing": {
-        "a100PerHour": 1.60,
-        "h100PerHour": 2.10,
-        "h200PerHour": 3.50,
+        "a100PerHour": 1.6,
+        "h100PerHour": 2.1,
+        "h200PerHour": 3.5,
         "egressPerGb": 0.08,
         "reservedDiscount": "Volume discounts available",
         "billingUnit": "Per hour",
@@ -201,7 +312,7 @@
         "EU data sovereignty and GDPR compliance",
         "InfiniBand for distributed training",
         "Managed Kubernetes with GPU node pools",
-        "Publicly listed company (NBIS) — stable backing"
+        "Publicly listed company (NBIS) \u2014 stable backing"
       ],
       "cons": [
         "Egress fees apply",
@@ -210,21 +321,106 @@
         "Smaller ecosystem and community",
         "Less mature platform than established providers"
       ],
-      "bestFor": "EU-based teams with data residency requirements needing competitive GPU pricing"
+      "bestFor": "EU-based teams with data residency requirements needing competitive GPU pricing",
+      "inference": {
+        "available": true,
+        "product": "Nebius Token Factory (AI Studio)",
+        "type": "Managed inference API (per-token)",
+        "pricingModel": "Per token (input/output separated)",
+        "openAICompatible": true,
+        "selfServe": true,
+        "coldStart": "Sub-second (shared tier)",
+        "scaleToZero": true,
+        "supportedModels": [
+          "Llama 3.x",
+          "DeepSeek R1",
+          "Mistral",
+          "Qwen",
+          "Flux",
+          "SDXL",
+          "GPT OSS"
+        ],
+        "modelCount": "60+ open-source models",
+        "batchInference": true,
+        "streamingSupport": true,
+        "sla": "99.9% SLA on dedicated endpoints",
+        "notes": "Most complete managed inference of the four. OpenAI-compatible API. Two tiers: Fast (sub-second, real-time) and Base (cost-efficient batch). 30% batch discount. EU data residency.",
+        "link": "https://nebius.com/ai-studio"
+      }
     }
   },
   "comparisonMatrix": {
-    "Free egress": { "CoreWeave": true, "Lambda": true, "RunPod": false, "Nebius": false },
-    "Bare-metal K8s": { "CoreWeave": true, "Lambda": true, "RunPod": false, "Nebius": false },
-    "Managed Kubernetes": { "CoreWeave": true, "Lambda": true, "RunPod": false, "Nebius": true },
-    "Spot instances": { "CoreWeave": false, "Lambda": false, "RunPod": true, "Nebius": false },
-    "InfiniBand networking": { "CoreWeave": true, "Lambda": true, "RunPod": false, "Nebius": true },
-    "Pre-installed ML stack": { "CoreWeave": false, "Lambda": true, "RunPod": true, "Nebius": false },
-    "Per-minute billing": { "CoreWeave": false, "Lambda": false, "RunPod": true, "Nebius": false },
-    "EU data residency": { "CoreWeave": false, "Lambda": false, "RunPod": false, "Nebius": true },
-    "Consumer GPUs": { "CoreWeave": false, "Lambda": false, "RunPod": true, "Nebius": false },
-    "Serverless GPU": { "CoreWeave": false, "Lambda": false, "RunPod": true, "Nebius": false },
-    "GB200 / Blackwell": { "CoreWeave": true, "Lambda": true, "RunPod": false, "Nebius": false },
-    "Publicly listed": { "CoreWeave": true, "Lambda": false, "RunPod": false, "Nebius": true }
+    "Free egress": {
+      "CoreWeave": true,
+      "Lambda": true,
+      "RunPod": false,
+      "Nebius": false
+    },
+    "Bare-metal K8s": {
+      "CoreWeave": true,
+      "Lambda": true,
+      "RunPod": false,
+      "Nebius": false
+    },
+    "Managed Kubernetes": {
+      "CoreWeave": true,
+      "Lambda": true,
+      "RunPod": false,
+      "Nebius": true
+    },
+    "Spot instances": {
+      "CoreWeave": false,
+      "Lambda": false,
+      "RunPod": true,
+      "Nebius": false
+    },
+    "InfiniBand networking": {
+      "CoreWeave": true,
+      "Lambda": true,
+      "RunPod": false,
+      "Nebius": true
+    },
+    "Pre-installed ML stack": {
+      "CoreWeave": false,
+      "Lambda": true,
+      "RunPod": true,
+      "Nebius": false
+    },
+    "Per-minute billing": {
+      "CoreWeave": false,
+      "Lambda": false,
+      "RunPod": true,
+      "Nebius": false
+    },
+    "EU data residency": {
+      "CoreWeave": false,
+      "Lambda": false,
+      "RunPod": false,
+      "Nebius": true
+    },
+    "Consumer GPUs": {
+      "CoreWeave": false,
+      "Lambda": false,
+      "RunPod": true,
+      "Nebius": false
+    },
+    "Serverless GPU": {
+      "CoreWeave": false,
+      "Lambda": false,
+      "RunPod": true,
+      "Nebius": false
+    },
+    "GB200 / Blackwell": {
+      "CoreWeave": true,
+      "Lambda": true,
+      "RunPod": false,
+      "Nebius": false
+    },
+    "Publicly listed": {
+      "CoreWeave": true,
+      "Lambda": false,
+      "RunPod": false,
+      "Nebius": true
+    }
   }
 }
