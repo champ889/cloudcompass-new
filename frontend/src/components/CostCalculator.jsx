@@ -8,23 +8,20 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const PROVIDERS = {
   AWS:   { label: 'AWS',          color: '#FF9900' },
-  Azure: { label: 'Azure',        color: '#0078D4' },
-  GCP:   { label: 'Google Cloud', color: '#4285F4' },
+  Azure: { label: 'Azure',        color: '#00B4F0' },
+  GCP:   { label: 'Google Cloud', color: '#34A853' },
 };
 
-// Pricing rates (per month approximations)
 const RATES = {
-  // Networking
-  natGatewayHours:    { AWS: 0.059,  Azure: 0.045,  GCP: 0.044  }, // $/hr
-  natDataPerGb:       { AWS: 0.059,  Azure: 0.045,  GCP: 0.045  }, // $/GB
-  lbHours:            { AWS: 0.008,  Azure: 0.008,  GCP: 0.008  }, // $/hr
-  cdnPerGb:           { AWS: 0.085,  Azure: 0.087,  GCP: 0.080  }, // $/GB first 10TB
-  vpnHours:           { AWS: 0.05,   Azure: 0.04,   GCP: 0.05   }, // $/hr
-  egressPerGb:        { AWS: 0.09,   Azure: 0.087,  GCP: 0.08   }, // $/GB egress
-  dnsZone:            { AWS: 0.50,   Azure: 0.50,   GCP: 0.20   }, // $/zone/mo
-  // Kubernetes
-  k8sControlPlane:    { AWS: 73,     Azure: 0,      GCP: 73     }, // $/mo per cluster
-  k8sNodeMediumHour:  { AWS: 0.096,  Azure: 0.096,  GCP: 0.095  }, // $/hr per node
+  natGatewayHours:   { AWS: 0.059, Azure: 0.045, GCP: 0.044 },
+  natDataPerGb:      { AWS: 0.059, Azure: 0.045, GCP: 0.045 },
+  lbHours:           { AWS: 0.008, Azure: 0.008, GCP: 0.008 },
+  cdnPerGb:          { AWS: 0.085, Azure: 0.087, GCP: 0.080 },
+  vpnHours:          { AWS: 0.05,  Azure: 0.04,  GCP: 0.05  },
+  egressPerGb:       { AWS: 0.09,  Azure: 0.087, GCP: 0.08  },
+  dnsZone:           { AWS: 0.50,  Azure: 0.50,  GCP: 0.20  },
+  k8sControlPlane:   { AWS: 73,    Azure: 0,     GCP: 73    },
+  k8sNodeMediumHour: { AWS: 0.096, Azure: 0.096, GCP: 0.095 },
 };
 
 const HOURS_PER_MONTH = 730;
@@ -34,9 +31,7 @@ const InputRow = ({ label, unit, value, onChange, min = 0 }) => (
     <label className="text-xs font-semibold uppercase tracking-widest opacity-60">{label}</label>
     <div className="flex items-center gap-2">
       <input
-        type="number"
-        min={min}
-        value={value}
+        type="number" min={min} value={value}
         onChange={e => onChange(Number(e.target.value))}
         className="form-input flex-1 rounded-lg px-3 py-2 text-sm bg-transparent border"
       />
@@ -46,7 +41,6 @@ const InputRow = ({ label, unit, value, onChange, min = 0 }) => (
 );
 
 const CostCalculator = () => {
-  // Networking inputs
   const [natHours, setNatHours] = useState(HOURS_PER_MONTH);
   const [natDataGb, setNatDataGb] = useState(500);
   const [lbHours, setLbHours] = useState(HOURS_PER_MONTH);
@@ -54,8 +48,6 @@ const CostCalculator = () => {
   const [vpnEnabled, setVpnEnabled] = useState(false);
   const [egressGb, setEgressGb] = useState(200);
   const [dnsZones, setDnsZones] = useState(3);
-
-  // Kubernetes inputs
   const [k8sEnabled, setK8sEnabled] = useState(false);
   const [k8sClusters, setK8sClusters] = useState(1);
   const [k8sNodes, setK8sNodes] = useState(3);
@@ -76,7 +68,6 @@ const CostCalculator = () => {
         k8s += k8sClusters * RATES.k8sControlPlane[p];
         k8s += k8sNodes * HOURS_PER_MONTH * RATES.k8sNodeMediumHour[p];
       }
-
       return [p, { net: Math.round(net), k8s: Math.round(k8s), total: Math.round(net + k8s) }];
     }));
   }, [natHours, natDataGb, lbHours, cdnGb, vpnEnabled, egressGb, dnsZones, k8sEnabled, k8sClusters, k8sNodes]);
@@ -85,34 +76,55 @@ const CostCalculator = () => {
   const textColor = isDark ? '#F9FAFB' : '#1F2937';
   const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
 
+  // Grouped bar chart — one group per cost category, bars side by side per provider
+  const categories = k8sEnabled
+    ? ['Networking', 'Kubernetes', 'Total']
+    : ['Networking', 'Total'];
+
   const chartData = {
-    labels: Object.values(PROVIDERS).map(p => p.label),
-    datasets: [
-      {
-        label: 'Networking',
-        data: Object.keys(PROVIDERS).map(p => costs[p].net),
-        backgroundColor: Object.values(PROVIDERS).map(p => p.color + 'CC'),
-        borderRadius: 6,
-      },
-      ...(k8sEnabled ? [{
-        label: 'Kubernetes',
-        data: Object.keys(PROVIDERS).map(p => costs[p].k8s),
-        backgroundColor: Object.values(PROVIDERS).map(p => p.color + '55'),
-        borderRadius: 6,
-      }] : []),
-    ],
+    labels: categories,
+    datasets: Object.entries(PROVIDERS).map(([p, meta]) => ({
+      label: meta.label,
+      data: k8sEnabled
+        ? [costs[p].net, costs[p].k8s, costs[p].total]
+        : [costs[p].net, costs[p].total],
+      backgroundColor: meta.color,
+      borderColor: meta.color,
+      borderWidth: 1,
+      borderRadius: 5,
+    })),
   };
 
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { labels: { color: textColor } },
-      tooltip: { callbacks: { label: ctx => ` $${ctx.parsed.y.toLocaleString()}/mo` } },
+      legend: {
+        position: 'top',
+        labels: {
+          color: textColor,
+          font: { size: 12, weight: 'bold' },
+          padding: 16,
+          usePointStyle: true,
+          pointStyle: 'rectRounded',
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}/mo`,
+        },
+      },
     },
     scales: {
-      x: { stacked: true, ticks: { color: textColor }, grid: { color: gridColor } },
-      y: { stacked: true, beginAtZero: true, ticks: { color: textColor, callback: v => '$' + v.toLocaleString() }, grid: { color: gridColor } },
+      x: {
+        ticks: { color: textColor, font: { size: 11 } },
+        grid: { color: gridColor },
+      },
+      y: {
+        beginAtZero: true,
+        ticks: { color: textColor, callback: v => '$' + v.toLocaleString() },
+        grid: { color: gridColor },
+      },
     },
   };
 
@@ -122,14 +134,15 @@ const CostCalculator = () => {
     <section id="calculator" className="py-20">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold mb-3">Cost Calculator</h2>
-        <p className="opacity-60 max-w-2xl mx-auto">Estimate your monthly cloud spend across networking and Kubernetes for AWS, Azure, and GCP.</p>
+        <p className="opacity-60 max-w-2xl mx-auto">
+          Estimate your monthly cloud spend across networking and Kubernetes for AWS, Azure, and GCP.
+        </p>
         <p className="text-xs opacity-40 mt-2">Estimates only — based on public pricing. Actual costs vary by region, usage, and discounts.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Inputs */}
         <div className="space-y-8">
-          {/* Networking */}
           <div className="provider-card rounded-xl p-6 shadow">
             <h3 className="font-semibold text-lg mb-5 flex items-center gap-2">
               <span className="text-blue-400">🌐</span> Networking
@@ -148,7 +161,6 @@ const CostCalculator = () => {
             </div>
           </div>
 
-          {/* Kubernetes */}
           <div className="provider-card rounded-xl p-6 shadow">
             <div className="flex items-center justify-between mb-5">
               <h3 className="font-semibold text-lg flex items-center gap-2">
@@ -159,35 +171,52 @@ const CostCalculator = () => {
                 <span className="text-sm">Include K8s</span>
               </label>
             </div>
-            {k8sEnabled && (
+            {k8sEnabled ? (
               <div className="space-y-4">
                 <InputRow label="Clusters" unit="clusters" value={k8sClusters} onChange={setK8sClusters} min={1} />
                 <InputRow label="Worker nodes (medium)" unit="nodes" value={k8sNodes} onChange={setK8sNodes} min={1} />
                 <p className="text-xs opacity-40">Node pricing based on ~2vCPU/4GB equivalent. Azure control plane is free.</p>
               </div>
+            ) : (
+              <p className="text-sm opacity-40">Enable to include managed Kubernetes costs.</p>
             )}
-            {!k8sEnabled && <p className="text-sm opacity-40">Enable to include managed Kubernetes costs.</p>}
           </div>
         </div>
 
         {/* Results */}
         <div className="space-y-6">
+          {/* Provider legend pills */}
+          <div className="flex justify-center gap-4">
+            {Object.entries(PROVIDERS).map(([p, meta]) => (
+              <div key={p} className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: meta.color }} />
+                <span className="text-sm font-semibold" style={{ color: meta.color }}>{meta.label}</span>
+              </div>
+            ))}
+          </div>
+
           {/* Chart */}
-          <div className="provider-card rounded-xl p-6 shadow" style={{ height: 320 }}>
+          <div className="provider-card rounded-xl p-6 shadow" style={{ height: 300 }}>
             <Bar data={chartData} options={chartOptions} />
           </div>
 
           {/* Summary cards */}
           <div className="grid grid-cols-3 gap-3">
             {Object.entries(costs).map(([p, c]) => (
-              <div key={p} className="provider-card rounded-xl p-4 shadow text-center" style={{ borderTopColor: PROVIDERS[p].color, borderTopWidth: 2 }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: PROVIDERS[p].color }}>{PROVIDERS[p].label}</p>
+              <div key={p} className="provider-card rounded-xl p-4 shadow text-center"
+                style={{ borderTopColor: PROVIDERS[p].color, borderTopWidth: 3 }}>
+                <div className="flex items-center justify-center gap-1 mb-2">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: PROVIDERS[p].color }} />
+                  <p className="text-xs font-bold uppercase tracking-widest" style={{ color: PROVIDERS[p].color }}>
+                    {PROVIDERS[p].label}
+                  </p>
+                </div>
                 <p className="text-2xl font-bold">${c.total.toLocaleString()}</p>
                 <p className="text-xs opacity-50">/month</p>
                 {p === cheapest && (
                   <span className="inline-block mt-2 text-xs bg-green-500 text-white rounded-full px-2 py-0.5">Lowest</span>
                 )}
-                <div className="mt-3 text-xs opacity-60 space-y-1 text-left">
+                <div className="mt-3 text-xs opacity-60 space-y-1 text-left border-t border-gray-700 pt-2">
                   <div className="flex justify-between"><span>Networking</span><span>${c.net.toLocaleString()}</span></div>
                   {k8sEnabled && <div className="flex justify-between"><span>Kubernetes</span><span>${c.k8s.toLocaleString()}</span></div>}
                 </div>
