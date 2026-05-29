@@ -1,0 +1,165 @@
+{
+  "providers": {
+    "SharonAI": {
+      "color": "#00A8E0",
+      "tagline": "Australia's sovereign AI cloud",
+      "overview": "First Nasdaq-listed (SHAZ) Australian neocloud with live GPU infrastructure in certified sovereign facilities. Operating H100, H200, B200 and Blackwell Ultra clusters at NEXTDC Melbourne and Sydney. Partnered with Cisco and NVIDIA to launch Australia's first Cisco Secure AI Factory. Targeting 20,000+ GPUs by end of 2026.",
+      "founded": "2021",
+      "ticker": "SHAZ (NASDAQ)",
+      "headquarters": "Melbourne, Australia",
+      "docs": "https://sharonai.com",
+      "website": "https://sharonai.com",
+      "datacentres": ["NEXTDC M3 Melbourne", "NEXTDC S3 Sydney"],
+      "gpus": ["H100 SXM", "H200", "B200", "Blackwell Ultra", "L40S", "A40"],
+      "sovereignty": {
+        "dataResidency": "Australia",
+        "certifications": ["NEXTDC Tier IV", "ISO 27001", "SOC 2"],
+        "governmentReady": true,
+        "notes": "All data processing remains in Australia. Cisco Secure AI Factory with NVIDIA supports Australia's National AI Plan."
+      },
+      "networking": {
+        "interconnect": "Mellanox CX-7 NDR200 + BlueField-3 DPUs",
+        "bandwidth": "NDR200 InfiniBand per node",
+        "egress": "Contact sales",
+        "internalTransfer": "Free within cluster",
+        "directConnect": "Via NEXTDC AXON interconnect fabric",
+        "notes": "Built on NVIDIA HGX reference architecture with BlueField-3 DPUs for secure sovereign networking."
+      },
+      "kubernetes": {
+        "service": "Container-as-a-Service (CaaS)",
+        "managed": true,
+        "bareMetal": true,
+        "features": ["Container environments", "GPU operator support", "Scalable cluster deployment", "S3-compatible storage integration"],
+        "notes": "Lightweight scalable container environments for AI deployment. GPU-native orchestration on bare metal NEXTDC infrastructure."
+      },
+      "inference": {
+        "available": true,
+        "product": "Sharon AI Studio (early access)",
+        "type": "Managed inference — contact sales",
+        "pricingModel": "Enterprise contract",
+        "openAICompatible": false,
+        "selfServe": false,
+        "notes": "Inference capability available via enterprise agreement. No public self-serve inference API as of May 2026. Primarily GPUaaS and enterprise contracts.",
+        "link": "https://sharonai.com"
+      },
+      "pricing": {
+        "h100PerHour": null,
+        "h200PerHour": null,
+        "b200PerHour": null,
+        "egressPerGb": null,
+        "pricingModel": "Enterprise contract — contact sales",
+        "notes": "No public per-GPU pricing. Enterprise and government contracts. Minimum commitments apply. Contact sales for AUD-denominated pricing."
+      },
+      "pros": [
+        "Only Nasdaq-listed sovereign Australian AI cloud",
+        "Live GPU fleet — H100, H200, B200, Blackwell Ultra operational now",
+        "NEXTDC Tier IV facilities — 100% uptime SLA",
+        "Cisco Secure AI Factory — first in Australia",
+        "Supports Australian National AI Plan",
+        "AUD billing available for Australian entities",
+        "BlueField-3 DPUs for secure sovereign networking"
+      ],
+      "cons": [
+        "No public self-serve pricing — enterprise only",
+        "No public managed inference API yet",
+        "Smaller GPU fleet than global providers (scaling in 2026)",
+        "Limited to Australian data centres currently",
+        "Higher cost premium for sovereignty"
+      ],
+      "bestFor": "Australian enterprises, government, and research organisations requiring sovereign AI compute with data remaining in Australia"
+    },
+    "Firmus": {
+      "color": "#FF6B35",
+      "tagline": "World's most energy-efficient AI factories",
+      "overview": "NVIDIA-backed Australian neocloud at $5.5B valuation (April 2026). Recognised as Top 3 Global GPU Cloud by SemiAnalysis. Building 1.6GW AI factory capacity across Australia via Project Southgate. First AI Factory Zone established in Tasmania powered by hydro. DCD Asia-Pacific Data Centre Project of the Year 2024.",
+      "founded": "2019",
+      "ticker": "Pre-IPO (ASX IPO expected mid-2026)",
+      "headquarters": "Sydney, Australia",
+      "docs": "https://firmus.co",
+      "website": "https://firmus.co",
+      "datacentres": ["Tasmania (hydro-powered)", "Melbourne (Project Southgate)", "Sydney", "Singapore"],
+      "gpus": ["GB300 NVL", "H200", "H100 SXM"],
+      "sovereignty": {
+        "dataResidency": "Australia / Singapore",
+        "certifications": ["ISO 27001", "SOC 2 Type II", "DCD Award 2024"],
+        "governmentReady": true,
+        "notes": "Tasmanian hydro-powered AI Factory Zone is Australia's first sovereign AI infrastructure zone. Model-to-Grid architecture integrates energy and compute."
+      },
+      "networking": {
+        "interconnect": "InfiniBand (NVIDIA reference architecture)",
+        "bandwidth": "Ultra-high-density racks, 800G+ Ethernet planned",
+        "egress": "Contact sales",
+        "internalTransfer": "Free within AI Factory",
+        "directConnect": "Via VAST Data AI OS unified fabric",
+        "notes": "Model-to-Grid architecture: AI Factory is grid-aware and model-aware simultaneously. Synert software platform integrates networking, thermal and grid signals."
+      },
+      "kubernetes": {
+        "service": "AI Cloud — GPU clusters and on-demand instances",
+        "managed": true,
+        "bareMetal": true,
+        "features": ["GPU clusters", "On-demand instances", "VAST Data AI OS storage layer", "Modular AI Factory deployment", "Grid-integrated scheduling"],
+        "notes": "Vertically integrated system — model behaviour, GPU performance, thermal dynamics and grid conditions unified into one optimisation framework."
+      },
+      "inference": {
+        "available": false,
+        "product": "None (infrastructure focus)",
+        "type": "GPUaaS and AI Factory infrastructure",
+        "pricingModel": "Enterprise contract",
+        "openAICompatible": false,
+        "selfServe": false,
+        "notes": "Firmus is infrastructure-only at this stage. No managed inference API. Customers deploy their own inference stack on Firmus AI Factories.",
+        "link": "https://firmus.co/ai-cloud"
+      },
+      "pricing": {
+        "h100PerHour": null,
+        "h200PerHour": null,
+        "b200PerHour": null,
+        "egressPerGb": null,
+        "pricingModel": "Enterprise contract — contact sales",
+        "notes": "No public pricing. Hyperscale and enterprise contracts. GB300 cluster deployment. Pre-IPO — pricing expected to become more accessible post-ASX listing."
+      },
+      "pros": [
+        "NVIDIA-backed at $5.5B valuation — well capitalised",
+        "Top 3 Global GPU Cloud (SemiAnalysis 2024 & 2025)",
+        "Hydro-powered Tasmania facility — lowest carbon AI compute in Australia",
+        "18,500 GB300 GPUs at Southgate Melbourne (April 2026)",
+        "Vertically integrated Model-to-Grid architecture",
+        "VAST Data AI OS — unified storage, compute and networking",
+        "1.6GW planned capacity — largest Australian AI infrastructure build"
+      ],
+      "cons": [
+        "Pre-IPO — limited public transparency on pricing",
+        "Infrastructure-only — no managed inference product",
+        "Minimum cluster-level commitments",
+        "Most capacity still being built (2026-2027)",
+        "Not accessible for small teams or developers"
+      ],
+      "bestFor": "Large enterprises, hyperscalers, and government requiring Australian sovereign AI training infrastructure at scale with clean energy"
+    }
+  },
+  "comparisonMatrix": {
+    "Live GPU fleet in Australia": { "SharonAI": true, "Firmus": true },
+    "Nasdaq / ASX listed": { "SharonAI": true, "Firmus": false },
+    "Public self-serve pricing": { "SharonAI": false, "Firmus": false },
+    "Managed inference API": { "SharonAI": false, "Firmus": false },
+    "Blackwell / GB300 GPUs": { "SharonAI": true, "Firmus": true },
+    "Sovereign data residency": { "SharonAI": true, "Firmus": true },
+    "Government-ready": { "SharonAI": true, "Firmus": true },
+    "Renewable energy powered": { "SharonAI": false, "Firmus": true },
+    "Bare-metal GPU access": { "SharonAI": true, "Firmus": true },
+    "Container / K8s support": { "SharonAI": true, "Firmus": false },
+    "AUD billing": { "SharonAI": true, "Firmus": true },
+    "NVIDIA partner": { "SharonAI": true, "Firmus": true }
+  },
+  "marketContext": {
+    "headline": "Australia's AI Infrastructure Moment",
+    "stats": [
+      { "label": "AWS AU investment", "value": "A$20B (2025-2029)" },
+      { "label": "NEXTDC + OpenAI Sydney campus", "value": "A$7B" },
+      { "label": "Firmus planned capacity", "value": "1.6GW by 2028" },
+      { "label": "Sharon AI GPU target", "value": "20,000+ GPUs by 2026" },
+      { "label": "AU data centre market CAGR", "value": "20.88% to 2031" }
+    ],
+    "note": "84% of Australian organisations surveyed currently use GPUaaS or intend to by 2027 (Integral Advice 2025 Neo Cloud Study)."
+  }
+}

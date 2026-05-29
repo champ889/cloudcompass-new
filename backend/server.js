@@ -8,6 +8,7 @@ const networkingRouter = require('./routes/networking');
 const kubernetesRouter = require('./routes/kubernetes');
 const newsRouter = require('./routes/news');
 const aicloudRouter = require('./routes/aicloud');
+const auaicloudRouter = require('./routes/auaicloud');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -21,6 +22,7 @@ app.use('/api/networking', networkingRouter);
 app.use('/api/kubernetes', kubernetesRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/aicloud', aicloudRouter);
+app.use('/api/auaicloud', auaicloudRouter);
 
 const frontendDist = isProd
   ? path.join(__dirname, '../frontend/dist')

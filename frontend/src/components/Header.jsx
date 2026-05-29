@@ -40,6 +40,7 @@ const Header = () => {
       <a href="#networking" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('networking'); }}>Networking</a>
       <a href="#kubernetes" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('kubernetes'); }}>Kubernetes</a>
       <a href="#aicloud" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('aicloud'); }}>AI Cloud</a>
+      <a href="#auaicloud" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('auaicloud'); }}>🇦🇺 AU Cloud</a>
       <a href="#news" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('news'); }}>News</a>
     </>
   );
@@ -82,7 +83,7 @@ const Header = () => {
                 <div className="flex-1 flex justify-start">
                   <span className="text-xl font-bold text-blue-400">CloudCompass</span>
                 </div>
-                <div className="hidden md:flex items-center space-x-8">{navLinks}</div>
+                <div className="hidden md:flex items-center space-x-6">{navLinks}</div>
                 <div className="flex-1 flex justify-end"><ThemeToggle /></div>
               </div>
             </div>
