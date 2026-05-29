@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AUGPUPricing from './AUGPUPricing';
 
 const PROVIDERS = ['SharonAI', 'Firmus'];
 const TABS = ['Overview', 'Infrastructure', 'Sovereignty', 'Kubernetes', 'Inference', 'Pros & Cons', 'Matrix'];
@@ -347,6 +348,9 @@ const AUAICloud = () => {
           </table>
         </div>
       )}
+      {/* GPU Pricing Calculator — always visible at bottom */}
+      <AUGPUPricing />
+
     </section>
   );
 };

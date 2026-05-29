@@ -1,0 +1,159 @@
+{
+  "lastUpdated": "May 2026",
+  "disclaimer": "All prices in USD. AU-region pricing typically 10-15% higher than US pricing for hyperscalers. Verify with providers before provisioning.",
+  "providers": [
+    {
+      "name": "AWS",
+      "color": "#FF9900",
+      "type": "Hyperscaler",
+      "auRegion": true,
+      "auLocation": "Sydney (ap-southeast-2)",
+      "sovereignty": "Data can remain in AU",
+      "selfServe": true,
+      "website": "https://aws.amazon.com/ec2/pricing/",
+      "gpus": {
+        "A100": { "onDemand": 3.40, "spot": 1.02, "reserved": 2.38, "instance": "p4d.24xlarge (8x A100) / 8 GPUs" },
+        "H100": { "onDemand": 6.88, "spot": 2.75, "reserved": 4.13, "instance": "p5.48xlarge (8x H100) — US region. AU region TBC" },
+        "H200": { "onDemand": 9.36, "spot": null, "reserved": null, "instance": "Capacity Blocks only" }
+      },
+      "egress": 0.114,
+      "notes": "A100 available in Sydney. H100/H200 capacity blocks primarily US regions. ~15% AU premium on A100."
+    },
+    {
+      "name": "Azure",
+      "color": "#00B4F0",
+      "type": "Hyperscaler",
+      "auRegion": true,
+      "auLocation": "Australia East (Sydney)",
+      "sovereignty": "Data can remain in AU",
+      "selfServe": true,
+      "website": "https://azure.microsoft.com/en-au/pricing/",
+      "gpus": {
+        "A100": { "onDemand": 3.67, "spot": 0.73, "reserved": 2.57, "instance": "NC A100 v4 (1x A100)" },
+        "H100": { "onDemand": 6.98, "spot": 2.09, "reserved": 4.19, "instance": "NC H100 v5 (1x H100)" },
+        "H200": { "onDemand": 12.29, "spot": null, "reserved": null, "instance": "ND H200 v5 — US regions only" }
+      },
+      "egress": 0.114,
+      "notes": "H100 available in Australia East. Highest H100 on-demand rate of the three hyperscalers."
+    },
+    {
+      "name": "GCP",
+      "color": "#34A853",
+      "type": "Hyperscaler",
+      "auRegion": true,
+      "auLocation": "Sydney (australia-southeast1)",
+      "sovereignty": "Data can remain in AU",
+      "selfServe": true,
+      "website": "https://cloud.google.com/compute/gpus-pricing",
+      "gpus": {
+        "A100": { "onDemand": 3.28, "spot": 0.98, "reserved": 2.30, "instance": "a2-highgpu-1g (1x A100)" },
+        "H100": { "onDemand": 3.00, "spot": 2.25, "reserved": 2.10, "instance": "a3-highgpu (1x H100) — spot cheapest hyperscaler H100" },
+        "H200": { "onDemand": null, "spot": 6.69, "reserved": null, "instance": "Spot only — US regions" }
+      },
+      "egress": 0.11,
+      "notes": "Cheapest hyperscaler H100 on-demand at ~$3/hr. Spot H100 at $2.25/hr is best hyperscaler spot rate."
+    },
+    {
+      "name": "Lambda Labs",
+      "color": "#e85d2a",
+      "type": "AI Neocloud",
+      "auRegion": false,
+      "auLocation": "US only (data leaves AU)",
+      "sovereignty": "Data hosted in US",
+      "selfServe": true,
+      "website": "https://lambda.ai/pricing",
+      "gpus": {
+        "A100": { "onDemand": 1.29, "spot": null, "reserved": 0.68, "instance": "gpu_1x_a100_sxm4" },
+        "H100": { "onDemand": 2.99, "spot": null, "reserved": 1.57, "instance": "gpu_1x_h100_sxm5" },
+        "H200": { "onDemand": 4.50, "spot": null, "reserved": null, "instance": "gpu_1x_h200" }
+      },
+      "egress": 0,
+      "notes": "Best all-inclusive on-demand pricing. No spot. No AU data centre — data processed in US."
+    },
+    {
+      "name": "CoreWeave",
+      "color": "#76b900",
+      "type": "AI Neocloud",
+      "auRegion": false,
+      "auLocation": "US/EU only (data leaves AU)",
+      "sovereignty": "Data hosted in US/EU",
+      "selfServe": false,
+      "website": "https://coreweave.com",
+      "gpus": {
+        "A100": { "onDemand": 2.70, "spot": null, "reserved": 1.08, "instance": "A100 SXM — bare metal" },
+        "H100": { "onDemand": 6.16, "spot": 2.50, "reserved": 2.46, "instance": "H100 SXM — bare metal" },
+        "H200": { "onDemand": 6.31, "spot": null, "reserved": null, "instance": "H200 SXM" }
+      },
+      "egress": 0,
+      "notes": "Enterprise only. No AU region. Best for large bare-metal clusters. Spot H100 at $2.50/hr."
+    },
+    {
+      "name": "RunPod",
+      "color": "#7c5cbf",
+      "type": "AI Neocloud",
+      "auRegion": false,
+      "auLocation": "US/EU (data leaves AU)",
+      "sovereignty": "Data hosted offshore",
+      "selfServe": true,
+      "website": "https://runpod.io/pricing",
+      "gpus": {
+        "A100": { "onDemand": 1.99, "spot": 0.89, "reserved": null, "instance": "A100 SXM — Secure Cloud" },
+        "H100": { "onDemand": 2.49, "spot": 1.49, "reserved": null, "instance": "H100 SXM — Secure Cloud" },
+        "H200": { "onDemand": null, "spot": null, "reserved": null, "instance": "Not available" }
+      },
+      "egress": 0.10,
+      "notes": "Cheapest self-serve H100 on-demand at $2.49/hr. Per-minute billing. Spot up to 90% cheaper. No AU region."
+    },
+    {
+      "name": "Nebius",
+      "color": "#0077cc",
+      "type": "AI Neocloud",
+      "auRegion": false,
+      "auLocation": "EU/US only (data leaves AU)",
+      "sovereignty": "EU data residency only",
+      "selfServe": true,
+      "website": "https://nebius.com/pricing",
+      "gpus": {
+        "A100": { "onDemand": 1.60, "spot": null, "reserved": 1.10, "instance": "1x A100 SXM" },
+        "H100": { "onDemand": 2.10, "spot": null, "reserved": 1.47, "instance": "1x H100 SXM — cheapest H100 on-demand" },
+        "H200": { "onDemand": 3.50, "spot": null, "reserved": null, "instance": "1x H200 SXM" }
+      },
+      "egress": 0.08,
+      "notes": "Cheapest H100 on-demand globally at $2.10/hr. EU data residency — GDPR compliant but not AU sovereign."
+    },
+    {
+      "name": "Sharon AI",
+      "color": "#00A8E0",
+      "type": "AU Sovereign",
+      "auRegion": true,
+      "auLocation": "Melbourne & Sydney (NEXTDC)",
+      "sovereignty": "Australian sovereign — data stays in AU",
+      "selfServe": false,
+      "website": "https://sharonai.com",
+      "gpus": {
+        "A100": { "onDemand": null, "spot": null, "reserved": null, "instance": "H100, H200, B200, Blackwell Ultra available" },
+        "H100": { "onDemand": null, "spot": null, "reserved": null, "instance": "Enterprise pricing — contact sales" },
+        "H200": { "onDemand": null, "spot": null, "reserved": null, "instance": "Enterprise pricing — contact sales" }
+      },
+      "egress": null,
+      "notes": "Australian sovereign cloud. NEXTDC Tier IV. Enterprise contracts only — no public pricing. AUD billing available."
+    },
+    {
+      "name": "Firmus",
+      "color": "#FF6B35",
+      "type": "AU Sovereign",
+      "auRegion": true,
+      "auLocation": "Tasmania & Melbourne (Project Southgate)",
+      "sovereignty": "Australian sovereign — hydro powered",
+      "selfServe": false,
+      "website": "https://firmus.co",
+      "gpus": {
+        "A100": { "onDemand": null, "spot": null, "reserved": null, "instance": "GB300, H200, H100 available" },
+        "H100": { "onDemand": null, "spot": null, "reserved": null, "instance": "Enterprise pricing — contact sales" },
+        "H200": { "onDemand": null, "spot": null, "reserved": null, "instance": "Enterprise pricing — contact sales" }
+      },
+      "egress": null,
+      "notes": "100% renewable hydro power. 18,500 GB300 GPUs at Southgate Melbourne. Enterprise only — pre-IPO."
+    }
+  ]
+}
