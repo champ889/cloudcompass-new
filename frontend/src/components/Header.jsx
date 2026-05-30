@@ -5,7 +5,7 @@ const NAV_ITEMS = [
   { label: 'Networking & K8s', id: 'networking' },
   { label: 'AI Cloud',         id: 'aicloud' },
   { label: 'GPU Pricing',      id: 'auaicloud' },
-  { label: '🇦🇺 Australia AI Cloud', id: 'auaicloud' },
+  { label: 'Australia AI Cloud', id: 'auaicloud' },
   { label: 'News',             id: 'news' },
 ];
 
@@ -13,7 +13,7 @@ const NAV_ITEMS = [
 const NAV = [
   { label: 'Networking & K8s', id: 'networking' },
   { label: 'AI Cloud',         id: 'aicloud' },
-  { label: '🇦🇺 Australia AI Cloud', id: 'auaicloud' },
+  { label: 'Australia AI Cloud', id: 'auaicloud' },
   { label: 'News',             id: 'news' },
 ];
 
@@ -101,7 +101,7 @@ const Header = () => {
               <div className="flex items-center h-16">
                 <div className="flex-shrink-0 mr-8">
                   <span className="text-lg font-bold text-blue-400">CloudCompass</span>
-                  <span className="text-xs opacity-40 ml-2 hidden lg:inline">for FinOps & Solution Architects</span>
+                  <span className="text-xs opacity-40 ml-2 hidden lg:inline">for FinOps, Solution Architects & Medium Enterprises</span>
                 </div>
                 <div className="flex items-center space-x-6 flex-1">{navLinks}</div>
                 <div className="flex-shrink-0"><ThemeToggle /></div>

@@ -10,7 +10,7 @@ const Hero = () => {
         {/* Audience tag */}
         <div className="flex justify-center mb-6">
           <span className="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full border border-blue-500 text-blue-400">
-            For FinOps Engineers & Solution Architects
+            For FinOps Engineers, Solution Architects & Medium Enterprises
           </span>
         </div>
 
