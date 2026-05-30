@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AUGPUPricing from './AUGPUPricing';
 
-const PROVIDERS = ['SharonAI', 'Firmus'];
+const PROVIDERS = ['SharonAI', 'Firmus', 'Micron21', 'IREN', 'SCX.ai'];
 const TABS = ['Overview', 'Infrastructure', 'Sovereignty', 'Kubernetes', 'Inference', 'Pros & Cons', 'Matrix'];
 
 const TickIcon = () => (
@@ -80,7 +80,7 @@ const AUAICloud = () => {
 
       {/* Overview */}
       {activeTab === 'Overview' && (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             return (
@@ -134,7 +134,7 @@ const AUAICloud = () => {
 
       {/* Infrastructure */}
       {activeTab === 'Infrastructure' && (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const net = pData.networking;
@@ -170,7 +170,7 @@ const AUAICloud = () => {
 
       {/* Sovereignty */}
       {activeTab === 'Sovereignty' && (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const sov = pData.sovereignty;
@@ -215,7 +215,7 @@ const AUAICloud = () => {
 
       {/* Kubernetes */}
       {activeTab === 'Kubernetes' && (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const k8s = pData.kubernetes;
@@ -255,7 +255,7 @@ const AUAICloud = () => {
 
       {/* Inference */}
       {activeTab === 'Inference' && (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const inf = pData.inference;
@@ -291,7 +291,7 @@ const AUAICloud = () => {
 
       {/* Pros & Cons */}
       {activeTab === 'Pros & Cons' && (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             return (

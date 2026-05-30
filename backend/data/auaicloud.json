@@ -9,11 +9,25 @@
       "headquarters": "Melbourne, Australia",
       "docs": "https://sharonai.com",
       "website": "https://sharonai.com",
-      "datacentres": ["NEXTDC M3 Melbourne", "NEXTDC S3 Sydney"],
-      "gpus": ["H100 SXM", "H200", "B200", "Blackwell Ultra", "L40S", "A40"],
+      "datacentres": [
+        "NEXTDC M3 Melbourne",
+        "NEXTDC S3 Sydney"
+      ],
+      "gpus": [
+        "H100 SXM",
+        "H200",
+        "B200",
+        "Blackwell Ultra",
+        "L40S",
+        "A40"
+      ],
       "sovereignty": {
         "dataResidency": "Australia",
-        "certifications": ["NEXTDC Tier IV", "ISO 27001", "SOC 2"],
+        "certifications": [
+          "NEXTDC Tier IV",
+          "ISO 27001",
+          "SOC 2"
+        ],
         "governmentReady": true,
         "notes": "All data processing remains in Australia. Cisco Secure AI Factory with NVIDIA supports Australia's National AI Plan."
       },
@@ -29,13 +43,18 @@
         "service": "Container-as-a-Service (CaaS)",
         "managed": true,
         "bareMetal": true,
-        "features": ["Container environments", "GPU operator support", "Scalable cluster deployment", "S3-compatible storage integration"],
+        "features": [
+          "Container environments",
+          "GPU operator support",
+          "Scalable cluster deployment",
+          "S3-compatible storage integration"
+        ],
         "notes": "Lightweight scalable container environments for AI deployment. GPU-native orchestration on bare metal NEXTDC infrastructure."
       },
       "inference": {
         "available": true,
         "product": "Sharon AI Studio (early access)",
-        "type": "Managed inference — contact sales",
+        "type": "Managed inference \u2014 contact sales",
         "pricingModel": "Enterprise contract",
         "openAICompatible": false,
         "selfServe": false,
@@ -47,20 +66,20 @@
         "h200PerHour": null,
         "b200PerHour": null,
         "egressPerGb": null,
-        "pricingModel": "Enterprise contract — contact sales",
+        "pricingModel": "Enterprise contract \u2014 contact sales",
         "notes": "No public per-GPU pricing. Enterprise and government contracts. Minimum commitments apply. Contact sales for AUD-denominated pricing."
       },
       "pros": [
         "Only Nasdaq-listed sovereign Australian AI cloud",
-        "Live GPU fleet — H100, H200, B200, Blackwell Ultra operational now",
-        "NEXTDC Tier IV facilities — 100% uptime SLA",
-        "Cisco Secure AI Factory — first in Australia",
+        "Live GPU fleet \u2014 H100, H200, B200, Blackwell Ultra operational now",
+        "NEXTDC Tier IV facilities \u2014 100% uptime SLA",
+        "Cisco Secure AI Factory \u2014 first in Australia",
         "Supports Australian National AI Plan",
         "AUD billing available for Australian entities",
         "BlueField-3 DPUs for secure sovereign networking"
       ],
       "cons": [
-        "No public self-serve pricing — enterprise only",
+        "No public self-serve pricing \u2014 enterprise only",
         "No public managed inference API yet",
         "Smaller GPU fleet than global providers (scaling in 2026)",
         "Limited to Australian data centres currently",
@@ -77,11 +96,24 @@
       "headquarters": "Sydney, Australia",
       "docs": "https://firmus.co",
       "website": "https://firmus.co",
-      "datacentres": ["Tasmania (hydro-powered)", "Melbourne (Project Southgate)", "Sydney", "Singapore"],
-      "gpus": ["GB300 NVL", "H200", "H100 SXM"],
+      "datacentres": [
+        "Tasmania (hydro-powered)",
+        "Melbourne (Project Southgate)",
+        "Sydney",
+        "Singapore"
+      ],
+      "gpus": [
+        "GB300 NVL",
+        "H200",
+        "H100 SXM"
+      ],
       "sovereignty": {
         "dataResidency": "Australia / Singapore",
-        "certifications": ["ISO 27001", "SOC 2 Type II", "DCD Award 2024"],
+        "certifications": [
+          "ISO 27001",
+          "SOC 2 Type II",
+          "DCD Award 2024"
+        ],
         "governmentReady": true,
         "notes": "Tasmanian hydro-powered AI Factory Zone is Australia's first sovereign AI infrastructure zone. Model-to-Grid architecture integrates energy and compute."
       },
@@ -94,11 +126,17 @@
         "notes": "Model-to-Grid architecture: AI Factory is grid-aware and model-aware simultaneously. Synert software platform integrates networking, thermal and grid signals."
       },
       "kubernetes": {
-        "service": "AI Cloud — GPU clusters and on-demand instances",
+        "service": "AI Cloud \u2014 GPU clusters and on-demand instances",
         "managed": true,
         "bareMetal": true,
-        "features": ["GPU clusters", "On-demand instances", "VAST Data AI OS storage layer", "Modular AI Factory deployment", "Grid-integrated scheduling"],
-        "notes": "Vertically integrated system — model behaviour, GPU performance, thermal dynamics and grid conditions unified into one optimisation framework."
+        "features": [
+          "GPU clusters",
+          "On-demand instances",
+          "VAST Data AI OS storage layer",
+          "Modular AI Factory deployment",
+          "Grid-integrated scheduling"
+        ],
+        "notes": "Vertically integrated system \u2014 model behaviour, GPU performance, thermal dynamics and grid conditions unified into one optimisation framework."
       },
       "inference": {
         "available": false,
@@ -115,50 +153,410 @@
         "h200PerHour": null,
         "b200PerHour": null,
         "egressPerGb": null,
-        "pricingModel": "Enterprise contract — contact sales",
-        "notes": "No public pricing. Hyperscale and enterprise contracts. GB300 cluster deployment. Pre-IPO — pricing expected to become more accessible post-ASX listing."
+        "pricingModel": "Enterprise contract \u2014 contact sales",
+        "notes": "No public pricing. Hyperscale and enterprise contracts. GB300 cluster deployment. Pre-IPO \u2014 pricing expected to become more accessible post-ASX listing."
       },
       "pros": [
-        "NVIDIA-backed at $5.5B valuation — well capitalised",
+        "NVIDIA-backed at $5.5B valuation \u2014 well capitalised",
         "Top 3 Global GPU Cloud (SemiAnalysis 2024 & 2025)",
-        "Hydro-powered Tasmania facility — lowest carbon AI compute in Australia",
+        "Hydro-powered Tasmania facility \u2014 lowest carbon AI compute in Australia",
         "18,500 GB300 GPUs at Southgate Melbourne (April 2026)",
         "Vertically integrated Model-to-Grid architecture",
-        "VAST Data AI OS — unified storage, compute and networking",
-        "1.6GW planned capacity — largest Australian AI infrastructure build"
+        "VAST Data AI OS \u2014 unified storage, compute and networking",
+        "1.6GW planned capacity \u2014 largest Australian AI infrastructure build"
       ],
       "cons": [
-        "Pre-IPO — limited public transparency on pricing",
-        "Infrastructure-only — no managed inference product",
+        "Pre-IPO \u2014 limited public transparency on pricing",
+        "Infrastructure-only \u2014 no managed inference product",
         "Minimum cluster-level commitments",
         "Most capacity still being built (2026-2027)",
         "Not accessible for small teams or developers"
       ],
       "bestFor": "Large enterprises, hyperscalers, and government requiring Australian sovereign AI training infrastructure at scale with clean energy"
+    },
+    "Micron21": {
+      "color": "#E63946",
+      "tagline": "Australia's first Tier IV GPU cloud",
+      "overview": "Melbourne-based neocloud operating Australia's first Tier IV-certified data centre (MEL1). Self-serve GPU cloud (mGPU) with A10, A100, RTX A6000, H100, and H200 on OpenStack. Offers dedicated GPU passthrough and time-sliced contended access. 100% uptime guarantee. 24/7 Australian-based support. Positions as significantly cheaper than AWS, Azure, and GCP for AU workloads.",
+      "founded": "2005",
+      "ticker": "Private",
+      "headquarters": "Bayswater, Melbourne VIC",
+      "docs": "https://www.micron21.com/enterprise/mcloud-gpu",
+      "website": "https://www.micron21.com",
+      "datacentres": [
+        "MEL1 Bayswater Melbourne (Tier IV)"
+      ],
+      "gpus": [
+        "A10",
+        "A100",
+        "RTX A6000",
+        "H100",
+        "H200"
+      ],
+      "sovereignty": {
+        "dataResidency": "Australia (Melbourne)",
+        "certifications": [
+          "Tier IV Design (first in AU)",
+          "ISO 27001",
+          "PCI-DSS"
+        ],
+        "governmentReady": true,
+        "notes": "Australia's first and only Tier IV certified DC. 100% uptime SLA. All data remains in AU."
+      },
+      "networking": {
+        "interconnect": "10GbE / 25GbE standard, InfiniBand on dedicated configs",
+        "bandwidth": "High-speed NVMe SSD + enterprise networking fabric",
+        "egress": "Included in plans (no per-GB fees on most tiers)",
+        "internalTransfer": "Free within mCloud platform",
+        "directConnect": "Via Equinix and IX Australia peering",
+        "notes": "OpenStack-based platform with GPU passthrough. Intel Xeon Gold CPUs + NVMe SSDs. HA architecture standard."
+      },
+      "kubernetes": {
+        "service": "Red Hat OpenShift on mCloud",
+        "managed": true,
+        "bareMetal": false,
+        "features": [
+          "Red Hat OpenShift",
+          "GPU passthrough to K8s pods",
+          "OpenStack integration",
+          "High-availability architecture",
+          "Kubernetes GPU operator support"
+        ],
+        "notes": "OpenShift available on mCloud platform with GPU integration. Self-serve via mCloud dashboard."
+      },
+      "inference": {
+        "available": false,
+        "product": "Self-managed (deploy your own)",
+        "type": "GPUaaS only \u2014 no managed inference API",
+        "pricingModel": "Hourly GPU compute",
+        "openAICompatible": false,
+        "selfServe": true,
+        "notes": "No managed inference product. Deploy your own vLLM, TGI, or TensorRT-LLM stack on mGPU instances. Self-serve via mCloud portal.",
+        "link": "https://www.micron21.com/enterprise/mcloud-gpu"
+      },
+      "pricing": {
+        "h100PerHour": null,
+        "h200PerHour": null,
+        "b200PerHour": null,
+        "egressPerGb": 0,
+        "pricingModel": "Transparent pricing via online calculator \u2014 AUD denominated",
+        "notes": "Pricing via online calculator at micron21.com/calculator. AUD pricing. Positions as fraction of AWS/Azure/GCP cost. No per-GB egress fees on most plans."
+      },
+      "pros": [
+        "Only self-serve AU GPU cloud with Tier IV certification",
+        "A100, H100, H200 available today in Melbourne",
+        "AUD pricing \u2014 no currency risk for AU customers",
+        "No per-GB egress fees on standard plans",
+        "24/7 Australian-based support team",
+        "OpenShift + GPU integration for K8s workloads",
+        "Significantly cheaper than hyperscalers per their TCO analysis"
+      ],
+      "cons": [
+        "Pricing not publicly listed \u2014 requires calculator/quote",
+        "Single data centre (Melbourne only) \u2014 no multi-region",
+        "Smaller GPU fleet than hyperscalers or Sharon AI",
+        "No InfiniBand for multi-node training at scale",
+        "No managed inference product",
+        "Less known globally than major neoclouds"
+      ],
+      "bestFor": "Australian SMEs and enterprises wanting self-serve GPU compute with AU data residency, Tier IV reliability, and AUD billing \u2014 without hyperscaler pricing"
+    },
+    "IREN": {
+      "color": "#F4A261",
+      "tagline": "AU-founded AI cloud \u2014 US/Canada infrastructure",
+      "overview": "NASDAQ-listed (IREN) AU-founded AI cloud provider with $9.7B Microsoft contract and 150,000 GPU target by end 2026. Headquarters in Sydney but GPU infrastructure in Texas (Childress) and British Columbia (Mackenzie, Prince George). Transitioning from Bitcoin mining to AI cloud. AU projects 'advancing' but no live AU GPU cloud yet as of May 2026.",
+      "founded": "2019",
+      "ticker": "IREN (NASDAQ)",
+      "headquarters": "Sydney, Australia (operations in US/Canada)",
+      "docs": "https://iren.com",
+      "website": "https://iren.com",
+      "datacentres": [
+        "Childress Texas (750MW, primary)",
+        "Mackenzie BC Canada",
+        "Prince George BC Canada",
+        "AU projects advancing"
+      ],
+      "gpus": [
+        "H100",
+        "H200",
+        "B300",
+        "GB300"
+      ],
+      "sovereignty": {
+        "dataResidency": "US / Canada (not AU currently)",
+        "certifications": [
+          "SOC 2 Type II (in progress)",
+          "NVIDIA partner"
+        ],
+        "governmentReady": false,
+        "notes": "AU-founded company but all live GPU infrastructure is in US and Canada. AU data centre projects are in development \u2014 not yet operational as of May 2026."
+      },
+      "networking": {
+        "interconnect": "InfiniBand (liquid-cooled Horizon clusters)",
+        "bandwidth": "200MW+ liquid-cooled data centres with NDR InfiniBand",
+        "egress": "Contact sales",
+        "internalTransfer": "Free within cluster",
+        "directConnect": "Via hyperscaler partnerships (Microsoft prepayment)",
+        "notes": "Vertically integrated platform: owns land, power, data centres, and GPU stack. Horizon 1-4 liquid-cooled clusters at Childress targeting 200MW IT load."
+      },
+      "kubernetes": {
+        "service": "Mirantis (acquired 2026) \u2014 managed K8s",
+        "managed": true,
+        "bareMetal": true,
+        "features": [
+          "Mirantis Kubernetes Engine",
+          "GPU cluster orchestration",
+          "Multi-node InfiniBand-aware scheduling",
+          "Customer-managed deployments"
+        ],
+        "notes": "Acquired Mirantis in 2026 to strengthen K8s delivery. Primarily large-scale GPU clusters for Microsoft and hyperscale customers."
+      },
+      "inference": {
+        "available": true,
+        "product": "IREN AI Cloud (enterprise GPU-as-a-Service)",
+        "type": "Managed GPU clusters \u2014 enterprise contract",
+        "pricingModel": "Multi-year enterprise contract",
+        "openAICompatible": false,
+        "selfServe": false,
+        "notes": "Primary customer is Microsoft ($9.7B contract). Also serves other hyperscale and enterprise customers. No public self-serve access.",
+        "link": "https://iren.com"
+      },
+      "pricing": {
+        "h100PerHour": null,
+        "h200PerHour": null,
+        "b200PerHour": null,
+        "egressPerGb": null,
+        "pricingModel": "Multi-year enterprise contracts only",
+        "notes": "No public pricing. Revenue of $3.7B ARR targeted by end 2026 via Microsoft and other hyperscale contracts. Not accessible to SMEs."
+      },
+      "pros": [
+        "AU-founded \u2014 Sydney HQ, ASX/NASDAQ listed (IREN)",
+        "$9.7B Microsoft contract validates platform quality",
+        "150,000 GPU fleet (H100, H200, B300) by end 2026",
+        "Vertically integrated \u2014 owns power, land, DC, and GPUs",
+        "Mirantis acquisition strengthens K8s delivery",
+        "Renewable energy-powered infrastructure"
+      ],
+      "cons": [
+        "No GPU infrastructure in Australia \u2014 all US/Canada",
+        "Not AU sovereign for data residency purposes",
+        "Enterprise/hyperscale only \u2014 not accessible to AU SMEs",
+        "No public self-serve pricing or sign-up",
+        "Primarily a Microsoft infrastructure partner, not general cloud",
+        "AU projects still in development \u2014 no live AU capacity"
+      ],
+      "bestFor": "Context only \u2014 AU-founded company but not relevant for AU sovereign data requirements. Watch for AU expansion in 2027+"
+    },
+    "SCX.ai": {
+      "color": "#2EC4B6",
+      "tagline": "Australia's first sovereign AI inference node",
+      "overview": "Sydney-based sovereign AI inference company using ASIC-based (non-GPU) inference chips. Launched Australia's first sovereign AI inference node in January 2026 at Equinix SY5 in Sydney. Claims 10x efficiency vs traditional GPU-based systems with zero water cooling. Focuses on enterprise and government AI inference with strict data sovereignty.",
+      "founded": "2023",
+      "ticker": "Private",
+      "headquarters": "Sydney, Australia",
+      "docs": "https://scx.ai",
+      "website": "https://scx.ai",
+      "datacentres": [
+        "Equinix SY5 Sydney"
+      ],
+      "gpus": [
+        "ASIC-based inference chips (not NVIDIA GPU)"
+      ],
+      "sovereignty": {
+        "dataResidency": "Australia (Sydney)",
+        "certifications": [
+          "Equinix SY5 certified",
+          "Sovereign AI compliant"
+        ],
+        "governmentReady": true,
+        "notes": "Purpose-built for AU sovereign AI inference. ASIC chips eliminate water cooling \u2014 critical for AU data centre power/water constraints. Lowest carbon footprint per AI token claimed."
+      },
+      "networking": {
+        "interconnect": "Equinix IBX fabric \u2014 carrier-neutral",
+        "bandwidth": "Enterprise carrier-neutral connectivity at Equinix SY5",
+        "egress": "Contact sales",
+        "internalTransfer": "Free within node",
+        "directConnect": "Via Equinix cross-connects to all major AU carriers",
+        "notes": "Equinix SY5 provides direct access to AU's internet exchange and enterprise carrier ecosystem."
+      },
+      "kubernetes": {
+        "service": "Not applicable (inference-only platform)",
+        "managed": false,
+        "bareMetal": false,
+        "features": [
+          "Sovereign AI inference API",
+          "Enterprise data governance",
+          "Government-grade compliance"
+        ],
+        "notes": "Not a general compute platform. Inference-only. No K8s or GPU training capability."
+      },
+      "inference": {
+        "available": true,
+        "product": "SCX.ai Sovereign Inference Node",
+        "type": "Managed inference \u2014 ASIC-based, sovereign",
+        "pricingModel": "Enterprise contract \u2014 contact sales",
+        "openAICompatible": false,
+        "selfServe": false,
+        "notes": "ASIC-based (not GPU). 10x efficiency vs GPU inference. No water cooling. Targeted at AU government and regulated enterprise needing sovereign inference. First live sovereign AU inference node.",
+        "link": "https://scx.ai"
+      },
+      "pricing": {
+        "h100PerHour": null,
+        "h200PerHour": null,
+        "b200PerHour": null,
+        "egressPerGb": null,
+        "pricingModel": "Enterprise contract \u2014 contact sales",
+        "notes": "No public pricing. ASIC-based inference pricing model differs from GPU-hour billing. Contact for enterprise/government pricing."
+      },
+      "pros": [
+        "First sovereign AI inference node live in Australia (Jan 2026)",
+        "ASIC-based \u2014 10x efficiency vs GPU inference",
+        "Zero water cooling \u2014 sustainable and AU climate-appropriate",
+        "Lowest carbon footprint per AI token claimed",
+        "Equinix SY5 \u2014 carrier-neutral, enterprise-grade connectivity",
+        "Purpose-built for AU government and regulated industries"
+      ],
+      "cons": [
+        "ASIC-only \u2014 no GPU training capability",
+        "Inference-only \u2014 not a general compute platform",
+        "No public pricing or self-serve access",
+        "Very early stage \u2014 limited track record",
+        "Not compatible with standard GPU workloads",
+        "No OpenAI-compatible API publicly available"
+      ],
+      "bestFor": "Australian government and regulated enterprises needing sovereign AI inference with maximum efficiency and no water cooling dependency"
     }
   },
   "comparisonMatrix": {
-    "Live GPU fleet in Australia": { "SharonAI": true, "Firmus": true },
-    "Nasdaq / ASX listed": { "SharonAI": true, "Firmus": false },
-    "Public self-serve pricing": { "SharonAI": false, "Firmus": false },
-    "Managed inference API": { "SharonAI": false, "Firmus": false },
-    "Blackwell / GB300 GPUs": { "SharonAI": true, "Firmus": true },
-    "Sovereign data residency": { "SharonAI": true, "Firmus": true },
-    "Government-ready": { "SharonAI": true, "Firmus": true },
-    "Renewable energy powered": { "SharonAI": false, "Firmus": true },
-    "Bare-metal GPU access": { "SharonAI": true, "Firmus": true },
-    "Container / K8s support": { "SharonAI": true, "Firmus": false },
-    "AUD billing": { "SharonAI": true, "Firmus": true },
-    "NVIDIA partner": { "SharonAI": true, "Firmus": true }
+    "Live GPU fleet in Australia": {
+      "SharonAI": true,
+      "Firmus": true,
+      "Micron21": true,
+      "IREN": false,
+      "SCX.ai": false
+    },
+    "Nasdaq / ASX listed": {
+      "SharonAI": true,
+      "Firmus": false,
+      "Micron21": false,
+      "IREN": true,
+      "SCX.ai": false
+    },
+    "Public self-serve pricing": {
+      "SharonAI": false,
+      "Firmus": false,
+      "Micron21": true,
+      "IREN": false,
+      "SCX.ai": false
+    },
+    "Managed inference API": {
+      "SharonAI": false,
+      "Firmus": false,
+      "Micron21": false,
+      "IREN": false,
+      "SCX.ai": true
+    },
+    "Blackwell / GB300 GPUs": {
+      "SharonAI": true,
+      "Firmus": true,
+      "Micron21": false,
+      "IREN": true,
+      "SCX.ai": false
+    },
+    "Sovereign data residency": {
+      "SharonAI": true,
+      "Firmus": true,
+      "Micron21": true,
+      "IREN": false,
+      "SCX.ai": true
+    },
+    "Government-ready": {
+      "SharonAI": true,
+      "Firmus": true,
+      "Micron21": true,
+      "IREN": false,
+      "SCX.ai": true
+    },
+    "Renewable energy powered": {
+      "SharonAI": false,
+      "Firmus": true,
+      "Micron21": false,
+      "IREN": true,
+      "SCX.ai": false
+    },
+    "Bare-metal GPU access": {
+      "SharonAI": true,
+      "Firmus": true,
+      "Micron21": false,
+      "IREN": true,
+      "SCX.ai": false
+    },
+    "Container / K8s support": {
+      "SharonAI": true,
+      "Firmus": false,
+      "Micron21": true,
+      "IREN": true,
+      "SCX.ai": false
+    },
+    "AUD billing": {
+      "SharonAI": true,
+      "Firmus": true,
+      "Micron21": true,
+      "IREN": false,
+      "SCX.ai": false
+    },
+    "NVIDIA partner": {
+      "SharonAI": true,
+      "Firmus": true,
+      "Micron21": true,
+      "IREN": true,
+      "SCX.ai": false
+    },
+    "Tier IV certified DC": {
+      "SharonAI": true,
+      "Firmus": false,
+      "Micron21": true,
+      "IREN": false,
+      "SCX.ai": false
+    },
+    "Self-serve GPU sign-up": {
+      "SharonAI": false,
+      "Firmus": false,
+      "Micron21": true,
+      "IREN": false,
+      "SCX.ai": false
+    },
+    "ASIC inference (non-GPU)": {
+      "SharonAI": false,
+      "Firmus": false,
+      "Micron21": false,
+      "IREN": false,
+      "SCX.ai": true
+    }
   },
   "marketContext": {
     "headline": "Australia's AI Infrastructure Moment",
     "stats": [
-      { "label": "AWS AU investment", "value": "A$20B (2025-2029)" },
-      { "label": "NEXTDC + OpenAI Sydney campus", "value": "A$7B" },
-      { "label": "Firmus planned capacity", "value": "1.6GW by 2028" },
-      { "label": "Sharon AI GPU target", "value": "20,000+ GPUs by 2026" },
-      { "label": "AU data centre market CAGR", "value": "20.88% to 2031" }
+      {
+        "label": "AWS AU investment",
+        "value": "A$20B (2025-2029)"
+      },
+      {
+        "label": "NEXTDC + OpenAI Sydney campus",
+        "value": "A$7B"
+      },
+      {
+        "label": "Firmus planned capacity",
+        "value": "1.6GW by 2028"
+      },
+      {
+        "label": "Sharon AI GPU target",
+        "value": "20,000+ GPUs by 2026"
+      },
+      {
+        "label": "AU data centre market CAGR",
+        "value": "20.88% to 2031"
+      }
     ],
     "note": "84% of Australian organisations surveyed currently use GPUaaS or intend to by 2027 (Integral Advice 2025 Neo Cloud Study)."
   }
