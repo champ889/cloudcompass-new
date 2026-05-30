@@ -44,9 +44,9 @@ const AUAICloud = () => {
       <div className="text-center mb-12">
         <div className="inline-block mb-4 px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-widest"
           style={{ backgroundColor: '#00843D22', color: '#00843D' }}>
-          🇦🇺 Australian Sovereign AI
+          🇦🇺 Sovereign Cloud
         </div>
-        <h2 className="text-3xl font-bold mb-3">Australian AI Cloud Providers</h2>
+        <h2 className="text-3xl font-bold mb-3">Australia AI Cloud</h2>
         <p className="opacity-60 max-w-2xl mx-auto">
           Homegrown GPU infrastructure purpose-built for Australian sovereignty, compliance, and enterprise AI — Sharon AI and Firmus compared.
         </p>

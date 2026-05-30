@@ -1,6 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useMediaQuery from './useMediaQuery';
 
+const NAV_ITEMS = [
+  { label: 'Networking & K8s', id: 'networking' },
+  { label: 'AI Cloud',         id: 'aicloud' },
+  { label: 'GPU Pricing',      id: 'auaicloud' },
+  { label: '🇦🇺 Australia AI Cloud', id: 'auaicloud' },
+  { label: 'News',             id: 'news' },
+];
+
+// Simplified nav — merged GPU pricing into AU section, clean labels
+const NAV = [
+  { label: 'Networking & K8s', id: 'networking' },
+  { label: 'AI Cloud',         id: 'aicloud' },
+  { label: '🇦🇺 Australia AI Cloud', id: 'auaicloud' },
+  { label: 'News',             id: 'news' },
+];
+
 const Header = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -35,13 +51,16 @@ const Header = () => {
 
   const navLinks = (
     <>
-      <a href="#home" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('home'); }}>Home</a>
-      <a href="#calculator" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('calculator'); }}>Calculator</a>
-      <a href="#networking" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('networking'); }}>Networking</a>
-      <a href="#kubernetes" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('kubernetes'); }}>Kubernetes</a>
-      <a href="#aicloud" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('aicloud'); }}>AI Cloud</a>
-      <a href="#auaicloud" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('auaicloud'); }}>🇦🇺 AU AI Cloud</a>
-      <a href="#news" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('news'); }}>News</a>
+      {NAV.map(item => (
+        <a
+          key={item.id + item.label}
+          href={`#${item.id}`}
+          className="nav-link"
+          onClick={(e) => { e.preventDefault(); scrollTo(item.id); }}
+        >
+          {item.label}
+        </a>
+      ))}
     </>
   );
 
@@ -76,15 +95,16 @@ const Header = () => {
         ) : (
           <nav
             id="navbar"
-            className={`fixed top-0 left-0 w-full shadow-lg transition-transform duration-300 z-40 bg-opacity-95 backdrop-blur-sm ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'}`}
+            className={`fixed top-0 left-0 w-full shadow-lg transition-transform duration-300 z-40 backdrop-blur-sm ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'}`}
           >
             <div className="mx-auto px-6 lg:px-8 w-full">
-              <div className="flex items-center h-20">
-                <div className="flex-1 flex justify-start">
-                  <span className="text-xl font-bold text-blue-400">CloudCompass</span>
+              <div className="flex items-center h-16">
+                <div className="flex-shrink-0 mr-8">
+                  <span className="text-lg font-bold text-blue-400">CloudCompass</span>
+                  <span className="text-xs opacity-40 ml-2 hidden lg:inline">for FinOps & Solution Architects</span>
                 </div>
-                <div className="hidden md:flex items-center space-x-6">{navLinks}</div>
-                <div className="flex-1 flex justify-end"><ThemeToggle /></div>
+                <div className="flex items-center space-x-6 flex-1">{navLinks}</div>
+                <div className="flex-shrink-0"><ThemeToggle /></div>
               </div>
             </div>
           </nav>
