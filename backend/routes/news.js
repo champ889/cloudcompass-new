@@ -8,94 +8,176 @@ const parser = new Parser({
 });
 
 const FEEDS = [
-  // ── AWS ──────────────────────────────────────────────────────────────────
+  // ── AWS — Networking ────────────────────────────────────────────────────
   {
     provider: 'AWS', color: '#FF9900',
     url: 'https://aws.amazon.com/blogs/networking-and-content-delivery/feed/',
     label: 'Networking & CDN Blog',
+    alwaysInclude: false,
   },
+  // ── AWS — Kubernetes / Containers ──────────────────────────────────────
   {
     provider: 'AWS', color: '#FF9900',
     url: 'https://aws.amazon.com/blogs/containers/feed/',
     label: 'Containers Blog',
+    alwaysInclude: false,
   },
+  // ── AWS — EKS release notes (GitHub commits atom) ──────────────────────
+  {
+    provider: 'AWS', color: '#FF9900',
+    url: 'https://github.com/awsdocs/amazon-eks-user-guide/commits/mainline/latest/ug/versioning/platform-versions.adoc.atom',
+    label: 'EKS Platform Versions',
+    alwaysInclude: true,
+  },
+  // ── AWS — EKS Auto Mode release notes ─────────────────────────────────
+  {
+    provider: 'AWS', color: '#FF9900',
+    url: 'https://github.com/awsdocs/amazon-eks-user-guide/commits/mainline/latest/ug/automode/auto-change.adoc.atom',
+    label: 'EKS Auto Mode',
+    alwaysInclude: true,
+  },
+  // ── AWS — GPU / Accelerated Computing (What's New) ─────────────────────
   {
     provider: 'AWS', color: '#FF9900',
     url: 'https://aws.amazon.com/blogs/aws/feed/',
-    label: 'AWS News Blog',
+    label: 'AWS News (GPU & AI)',
+    alwaysInclude: false,
+  },
+  // ── AWS — General What's New ───────────────────────────────────────────
+  {
+    provider: 'AWS', color: '#FF9900',
+    url: 'https://aws.amazon.com/about-aws/whats-new/recent/feed/',
+    label: "What's New",
+    alwaysInclude: false,
   },
 
-  // ── Azure ─────────────────────────────────────────────────────────────────
+  // ── Azure — AKS release notes (GitHub atom — best source) ─────────────
   {
     provider: 'Azure', color: '#0078D4',
     url: 'https://github.com/Azure/AKS/releases.atom',
     label: 'AKS Release Notes',
+    alwaysInclude: true,
   },
+  // ── Azure — Azure Updates (official product updates feed) ──────────────
+  {
+    provider: 'Azure', color: '#0078D4',
+    url: 'https://azurecomcdn.azureedge.net/en-us/updates/feed/',
+    label: 'Azure Updates',
+    alwaysInclude: false,
+  },
+  // ── Azure — Azure Networking Tech Community Blog ───────────────────────
   {
     provider: 'Azure', color: '#0078D4',
     url: 'https://techcommunity.microsoft.com/plugins/custom/microsoft/o365/custom-blog-rss?tid=2&board=AzureNetworkingBlog&labels=&size=20',
     label: 'Azure Networking Blog',
+    alwaysInclude: false,
   },
+  // ── Azure — Microsoft Tech Community (Azure Infrastructure) ───────────
+  {
+    provider: 'Azure', color: '#0078D4',
+    url: 'https://techcommunity.microsoft.com/plugins/custom/microsoft/o365/custom-blog-rss?tid=2&board=AzureInfrastructureBlog&labels=&size=20',
+    label: 'Azure Infrastructure Blog',
+    alwaysInclude: false,
+  },
+  // ── Azure — Azure Blog (GPU & AI) ──────────────────────────────────────
   {
     provider: 'Azure', color: '#0078D4',
     url: 'https://azurecomcdn.azureedge.net/en-us/blog/feed/',
-    label: 'Azure Blog',
+    label: 'Azure Blog (GPU & AI)',
+    alwaysInclude: false,
   },
 
-  // ── GCP ───────────────────────────────────────────────────────────────────
+  // ── GCP — GKE Release Notes ────────────────────────────────────────────
   {
     provider: 'GCP', color: '#4285F4',
     url: 'https://cloud.google.com/feeds/kubernetes-engine-release-notes.xml',
     label: 'GKE Release Notes',
+    alwaysInclude: true,
   },
+  // ── GCP — VPC Release Notes ────────────────────────────────────────────
   {
     provider: 'GCP', color: '#4285F4',
     url: 'https://cloud.google.com/feeds/virtual-private-cloud-release-notes.xml',
     label: 'VPC Release Notes',
+    alwaysInclude: true,
   },
+  // ── GCP — Cloud Load Balancing ─────────────────────────────────────────
   {
     provider: 'GCP', color: '#4285F4',
     url: 'https://cloud.google.com/feeds/cloud-load-balancing-release-notes.xml',
     label: 'Cloud Load Balancing',
+    alwaysInclude: true,
   },
+  // ── GCP — Cloud CDN ────────────────────────────────────────────────────
   {
     provider: 'GCP', color: '#4285F4',
     url: 'https://cloud.google.com/feeds/cloud-cdn-release-notes.xml',
     label: 'Cloud CDN',
+    alwaysInclude: true,
   },
+  // ── GCP — Cloud DNS ────────────────────────────────────────────────────
   {
     provider: 'GCP', color: '#4285F4',
     url: 'https://cloud.google.com/feeds/cloud-dns-release-notes.xml',
     label: 'Cloud DNS',
+    alwaysInclude: true,
   },
+  // ── GCP — Cloud Interconnect ───────────────────────────────────────────
   {
     provider: 'GCP', color: '#4285F4',
     url: 'https://cloud.google.com/feeds/cloud-interconnect-release-notes.xml',
     label: 'Cloud Interconnect',
+    alwaysInclude: true,
   },
-  {
-    provider: 'GCP', color: '#4285F4',
-    url: 'https://cloud.google.com/feeds/networkintelligence-release-notes.xml',
-    label: 'Network Intelligence',
-  },
+  // ── GCP — Cloud NAT ────────────────────────────────────────────────────
   {
     provider: 'GCP', color: '#4285F4',
     url: 'https://cloud.google.com/feeds/cloud-nat-release-notes.xml',
     label: 'Cloud NAT',
+    alwaysInclude: true,
+  },
+  // ── GCP — GPU / Accelerator Release Notes ─────────────────────────────
+  {
+    provider: 'GCP', color: '#4285F4',
+    url: 'https://cloud.google.com/feeds/compute-engine-release-notes.xml',
+    label: 'Compute Engine (GPU)',
+    alwaysInclude: false,
+  },
+  // ── GCP — Network Intelligence Center ─────────────────────────────────
+  {
+    provider: 'GCP', color: '#4285F4',
+    url: 'https://cloud.google.com/feeds/networkintelligence-release-notes.xml',
+    label: 'Network Intelligence',
+    alwaysInclude: true,
+  },
+  // ── GCP — Vertex AI (GPU/AI workloads) ────────────────────────────────
+  {
+    provider: 'GCP', color: '#4285F4',
+    url: 'https://cloud.google.com/feeds/vertex-ai-release-notes.xml',
+    label: 'Vertex AI',
+    alwaysInclude: false,
   },
 ];
 
 const KEYWORDS = [
-  'kubernetes', 'eks', 'aks', 'gke', 'networking', 'vpc', 'vnet',
-  'load balancer', 'cdn', 'dns', 'vpn', 'firewall', 'nat', 'ingress',
-  'egress', 'container', 'cluster', 'node pool', 'pod', 'helm', 'istio',
-  'service mesh', 'network policy', 'direct connect', 'expressroute',
-  'interconnect', 'cloudfront', 'waf', 'cilium', 'ebpf', 'cni',
-  'karpenter', 'autoscal', 'gateway', 'subnet', 'peering', 'transit',
+  // Kubernetes
+  'kubernetes', 'eks', 'aks', 'gke', 'cluster', 'node pool', 'pod', 'helm',
+  'istio', 'cilium', 'ebpf', 'cni', 'karpenter', 'autoscal', 'ingress',
+  'service mesh', 'network policy', 'containerd', 'kubelet', 'kubeadm',
+  // Networking
+  'vpc', 'vnet', 'load balancer', 'cdn', 'dns', 'vpn', 'firewall', 'nat',
+  'egress', 'gateway', 'subnet', 'peering', 'transit', 'direct connect',
+  'expressroute', 'interconnect', 'cloudfront', 'waf', 'ddos', 'routing',
+  'private link', 'private endpoint', 'nsg', 'acl', 'flow log',
+  // GPU / AI compute
+  'gpu', 'h100', 'h200', 'a100', 'b200', 'b300', 'blackwell', 'hopper',
+  'nvidia', 'p4', 'p5', 'p6', 'inferenc', 'training', 'accelerat',
+  'cuda', 'tensor', 'infiniband', 'efa', 'nccl', 'sagemaker hyperpod',
+  'capacity block', 'gpu instance', 'gpu cluster', 'ai infrastructure',
 ];
 
 let cache = { data: null, lastFetched: null };
-const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
 
 function matchesKeywords(text = '') {
   const lower = text.toLowerCase();
@@ -111,9 +193,7 @@ async function fetchAllFeeds() {
         const parsed = await parser.parseURL(feed.url);
         const filtered = parsed.items
           .filter(item =>
-            // GCP product feeds and AKS releases are always relevant
-            feed.url.includes('cloud.google.com/feeds') ||
-            feed.url.includes('AKS/releases') ||
+            feed.alwaysInclude ||
             matchesKeywords(item.title) ||
             matchesKeywords(item.contentSnippet)
           )
