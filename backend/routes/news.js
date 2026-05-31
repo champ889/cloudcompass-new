@@ -4,8 +4,27 @@ const Parser = require('rss-parser');
 
 const parser = new Parser({
   timeout: 10000,
-  customFields: { item: ['media:content', 'media:thumbnail'] },
+  customFields: {
+    item: ['media:content', 'media:thumbnail', 'content', 'summary'],
+  },
 });
+
+// Strip HTML tags and decode basic entities
+function stripHtml(html = '') {
+  return html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// Extract a clean snippet from any item, handling GitHub atom HTML content
+function extractSnippet(item, maxLength = 220) {
+  const raw = item.contentSnippet || item.summary || item.content || '';
+  const clean = stripHtml(raw);
+  return clean.length > maxLength ? clean.slice(0, maxLength) + '…' : clean;
+}
 
 const FEEDS = [
   // ── AWS — Networking ────────────────────────────────────────────────────
@@ -204,8 +223,8 @@ async function fetchAllFeeds() {
             label: feed.label,
             title: item.title?.trim(),
             link: item.link,
-            date: item.pubDate || item.isoDate,
-            snippet: item.contentSnippet?.slice(0, 220) || '',
+            date: item.pubDate || item.isoDate || item.updated,
+            snippet: extractSnippet(item),
           }));
         results.push(...filtered);
       } catch (err) {
