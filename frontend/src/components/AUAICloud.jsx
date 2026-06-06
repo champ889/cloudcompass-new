@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AUGPUPricing from './AUGPUPricing';
 
-const PROVIDERS = ['SharonAI', 'Firmus', 'Micron21', 'IREN', 'SCX.ai'];
+const PROVIDERS = ['SharonAI', 'Firmus'];
 const TABS = ['Overview', 'Infrastructure', 'Sovereignty', 'Kubernetes', 'Inference', 'Pros & Cons', 'Matrix'];
 
 const TickIcon = () => (
@@ -44,9 +43,9 @@ const AUAICloud = () => {
       <div className="text-center mb-12">
         <div className="inline-block mb-4 px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-widest"
           style={{ backgroundColor: '#00843D22', color: '#00843D' }}>
-          🇦🇺 Sovereign Cloud
+          🇦🇺 Australian Sovereign AI
         </div>
-        <h2 className="text-3xl font-bold mb-3">Australia AI Cloud</h2>
+        <h2 className="text-3xl font-bold mb-3">Australian AI Cloud Providers</h2>
         <p className="opacity-60 max-w-2xl mx-auto">
           Homegrown GPU infrastructure purpose-built for Australian sovereignty, compliance, and enterprise AI — Sharon AI and Firmus compared.
         </p>
@@ -80,7 +79,7 @@ const AUAICloud = () => {
 
       {/* Overview */}
       {activeTab === 'Overview' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-6">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             return (
@@ -134,7 +133,7 @@ const AUAICloud = () => {
 
       {/* Infrastructure */}
       {activeTab === 'Infrastructure' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-6">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const net = pData.networking;
@@ -170,7 +169,7 @@ const AUAICloud = () => {
 
       {/* Sovereignty */}
       {activeTab === 'Sovereignty' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-6">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const sov = pData.sovereignty;
@@ -215,7 +214,7 @@ const AUAICloud = () => {
 
       {/* Kubernetes */}
       {activeTab === 'Kubernetes' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-6">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const k8s = pData.kubernetes;
@@ -255,7 +254,7 @@ const AUAICloud = () => {
 
       {/* Inference */}
       {activeTab === 'Inference' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-6">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             const inf = pData.inference;
@@ -291,7 +290,7 @@ const AUAICloud = () => {
 
       {/* Pros & Cons */}
       {activeTab === 'Pros & Cons' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-6">
           {PROVIDERS.map(p => {
             const pData = providers[p];
             return (
@@ -348,9 +347,6 @@ const AUAICloud = () => {
           </table>
         </div>
       )}
-      {/* GPU Pricing Calculator — always visible at bottom */}
-      <AUGPUPricing />
-
     </section>
   );
 };

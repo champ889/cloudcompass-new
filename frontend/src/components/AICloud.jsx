@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import AICloudCalculator from './AICloudCalculator';
 
 const PROVIDERS = ['CoreWeave', 'Lambda', 'RunPod', 'Nebius'];
-const TABS = ['Overview', 'GPU Pricing', 'Networking', 'Kubernetes', 'Inference', 'Pros & Cons', 'Matrix'];
+const TABS = ['Overview', 'GPU Pricing', 'Networking', 'Kubernetes', 'Pros & Cons', 'Matrix'];
 
 const CheckIcon = ({ ok }) => ok
   ? <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -249,127 +248,6 @@ const AICloud = () => {
         </div>
       )}
 
-      {/* Inference */}
-      {activeTab === 'Inference' && (
-        <div className="space-y-6">
-          {/* Summary row */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PROVIDERS.map(p => {
-              const pData = providers[p];
-              const inf = pData.inference;
-              if (!inf) return null;
-              return (
-                <div key={p} className="provider-card rounded-xl p-5 shadow-lg border"
-                  style={{ borderTopColor: pData.color, borderTopWidth: 3, opacity: inf.available ? 1 : 0.5 }}>
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-widest px-2 py-1 rounded"
-                      style={{ backgroundColor: pData.color + '22', color: pData.color }}>
-                      {p}
-                    </span>
-                    {inf.available
-                      ? <span className="text-xs bg-green-500 text-white px-2 py-0.5 rounded-full">Available</span>
-                      : <span className="text-xs bg-gray-500 text-white px-2 py-0.5 rounded-full">None</span>
-                    }
-                  </div>
-
-                  <p className="text-sm font-semibold mb-1">{inf.product}</p>
-                  <p className="text-xs opacity-50 mb-4">{inf.type}</p>
-
-                  {inf.available ? (
-                    <div className="space-y-2 text-xs">
-                      <div className="flex justify-between">
-                        <span className="opacity-50">Pricing</span>
-                        <span className="font-medium text-right max-w-32">{inf.pricingModel}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="opacity-50">Cold start</span>
-                        <span className="font-medium">{inf.coldStart}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="opacity-50">Scale to zero</span>
-                        <span style={{ color: inf.scaleToZero ? '#22c55e' : '#f87171' }}>
-                          {inf.scaleToZero ? 'Yes' : 'No'}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="opacity-50">OpenAI API</span>
-                        <span style={{ color: inf.openAICompatible ? '#22c55e' : '#f87171' }}>
-                          {inf.openAICompatible ? 'Compatible' : 'No'}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="opacity-50">Self-serve</span>
-                        <span style={{ color: inf.selfServe ? '#22c55e' : '#f87171' }}>
-                          {inf.selfServe ? 'Yes' : 'Enterprise only'}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="opacity-50">Models</span>
-                        <span className="font-medium">{inf.modelCount}</span>
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-xs opacity-50 leading-relaxed">{inf.notes}</p>
-                  )}
-
-                  {inf.available && (
-                    <>
-                      <div className="pricing-note rounded-lg p-3 text-xs opacity-70 mt-4">
-                        {inf.notes}
-                      </div>
-                      <a href={inf.link} target="_blank" rel="noopener noreferrer"
-                        className="inline-block mt-3 text-xs font-medium hover:underline"
-                        style={{ color: pData.color }}>
-                        Learn more →
-                      </a>
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Inference matrix */}
-          <div className="overflow-x-auto rounded-xl shadow mt-6">
-            <table className="min-w-full comparison-table text-sm">
-              <thead>
-                <tr>
-                  <th className="p-4 text-left">Capability</th>
-                  {PROVIDERS.map(p => (
-                    <th key={p} className="p-4 text-center" style={{ color: providers[p].color }}>{p}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ['Managed inference', p => providers[p].inference?.available],
-                  ['Self-serve signup', p => providers[p].inference?.selfServe],
-                  ['OpenAI-compatible API', p => providers[p].inference?.openAICompatible],
-                  ['Scale to zero', p => providers[p].inference?.scaleToZero],
-                  ['Batch inference', p => providers[p].inference?.batchInference],
-                  ['Streaming support', p => providers[p].inference?.streamingSupport],
-                  ['Production SLA', p => !!providers[p].inference?.sla && providers[p].inference?.sla !== 'N/A'],
-                ].map(([label, fn]) => (
-                  <tr key={label}>
-                    <td className="p-4 font-medium opacity-70">{label}</td>
-                    {PROVIDERS.map(p => (
-                      <td key={p} className="p-4 text-center">
-                        <div className="flex justify-center">
-                          {fn(p)
-                            ? <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                            : <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                          }
-                        </div>
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
       {/* Pros & Cons */}
       {activeTab === 'Pros & Cons' && (
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -435,9 +313,6 @@ const AICloud = () => {
           </table>
         </div>
       )}
-      {/* Calculator always visible below tabs */}
-      <AICloudCalculator />
-
     </section>
   );
 };
