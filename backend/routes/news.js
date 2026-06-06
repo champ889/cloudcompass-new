@@ -193,22 +193,36 @@ const FEEDS = [
 
 // Keywords for secondary filtering on non-alwaysInclude feeds
 const NETWORKING_KEYWORDS = [
-  'vpc', 'vnet', 'load balancer', 'cdn', 'dns', 'vpn', 'firewall', 'nat',
-  'egress', 'gateway', 'subnet', 'peering', 'transit', 'direct connect',
-  'expressroute', 'interconnect', 'cloudfront', 'waf', 'ddos', 'routing',
-  'private link', 'private endpoint', 'nsg', 'flow log', 'network',
-  'kubernetes', 'eks', 'aks', 'gke', 'cluster', 'node pool', 'pod', 'helm',
-  'istio', 'cilium', 'ebpf', 'cni', 'karpenter', 'autoscal', 'ingress',
-  'service mesh', 'network policy', 'containerd', 'kubelet',
+  // Networking services
+  'vpc', 'vnet', 'virtual network', 'load balancer', 'cdn', 'dns', 'vpn',
+  'firewall', 'nat gateway', 'subnet', 'peering', 'transit gateway',
+  'direct connect', 'expressroute', 'interconnect', 'cloudfront',
+  'waf', 'ddos', 'routing', 'private link', 'private endpoint',
+  'nsg', 'flow log', 'network security', 'traffic manager',
+  'azure front door', 'global accelerator', 'route 53',
+  // Kubernetes
+  'kubernetes', 'eks', 'aks', 'gke', 'cluster', 'node pool', 'pod',
+  'helm', 'istio', 'cilium', 'ebpf', 'cni', 'karpenter', 'ingress',
+  'service mesh', 'network policy', 'containerd', 'kubelet', 'kubeadm',
+  'kubectl', 'control plane', 'node group', 'fargate', 'autopilot',
 ];
 
 const AI_KEYWORDS = [
-  'gpu', 'h100', 'h200', 'a100', 'b200', 'b300', 'blackwell', 'hopper',
-  'nvidia', 'p4', 'p5', 'p6', 'inferenc', 'training', 'accelerat',
-  'cuda', 'tensor', 'infiniband', 'efa', 'nccl', 'sagemaker', 'hyperpod',
-  'capacity block', 'gpu instance', 'gpu cluster', 'ai infrastructure',
-  'llm', 'foundation model', 'generative ai', 'machine learning',
-  'deep learning', 'vertex ai', 'bedrock', 'hpc', 'supercompute',
+  // GPU hardware
+  'gpu', 'h100', 'h200', 'a100', 'b200', 'b300', 'gb200', 'gb300',
+  'blackwell', 'hopper', 'ampere', 'nvidia', 'p4d', 'p5', 'p6',
+  'cuda', 'tensor core', 'nvlink', 'infiniband', 'efa',
+  // GPU cloud / GPUaaS
+  'gpu instance', 'gpu cluster', 'gpu cloud', 'gpu compute',
+  'capacity block', 'hyperpod', 'sagemaker', 'vertex ai', 'bedrock',
+  'supercompute', 'ai factory', 'ai infrastructure', 'ai accelerat',
+  // Inference & training
+  'inferenc', 'llm inference', 'model serving', 'vllm', 'tensorrt',
+  'triton', 'model training', 'distributed training', 'fine-tun',
+  'nccl', 'rdma', 'hpc', 'high performance computing',
+  // AI workloads
+  'large language model', 'llm', 'foundation model', 'generative ai',
+  'deep learning', 'machine learning workload',
 ];
 
 function matchesKeywords(item, keywords) {
