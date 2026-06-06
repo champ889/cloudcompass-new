@@ -1,42 +1,43 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Footer = () => {
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-
-  return (
-    <footer className="py-12" style={{ backgroundColor: 'var(--card-background)' }}>
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">CloudCompass</h3>
-            <p className="text-sm opacity-60">Helping Australian businesses navigate cloud networking and Kubernetes decisions across AWS, Azure, and GCP.</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 footer-links text-sm">
-              <li><a href="#networking" onClick={(e) => { e.preventDefault(); scrollTo('networking'); }}>Networking</a></li>
-              <li><a href="#kubernetes" onClick={(e) => { e.preventDefault(); scrollTo('kubernetes'); }}>Kubernetes</a></li>
-              <li><a href="#calculator" onClick={(e) => { e.preventDefault(); scrollTo('calculator'); }}>Cost Calculator</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2 text-sm opacity-60">
-              <li>Email: <a href="mailto:info@cloudcompass.com.au" className="hover:opacity-100">info@cloudcompass.com.au</a></li>
-              <li>Phone: +61 2 1234 5678</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Disclaimer</h3>
-            <p className="text-xs opacity-40">Pricing shown is approximate and based on public cloud pricing pages. Always verify with the official provider. Rates change frequently.</p>
-          </div>
+const Footer = () => (
+  <footer className="py-12 mt-8" style={{ backgroundColor: 'var(--card-background)' }}>
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="grid md:grid-cols-4 gap-8">
+        <div>
+          <h3 className="text-lg font-semibold mb-3">CloudCompass</h3>
+          <p className="text-sm opacity-60 leading-relaxed">
+            Helping FinOps engineers, solution architects, and medium enterprises navigate cloud networking, Kubernetes, and AI GPU decisions across AWS, Azure, GCP, and Australian sovereign cloud.
+          </p>
         </div>
-        <div className="mt-8 pt-6 border-t border-gray-700 text-center text-xs opacity-30">
-          © {new Date().getFullYear()} CloudCompass. Focused on AWS · Azure · Google Cloud.
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Pages</h3>
+          <ul className="space-y-2 text-sm footer-links">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/networking">Networking & Kubernetes</Link></li>
+            <li><Link to="/ai-cloud">AI Cloud & GPU Pricing</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Contact</h3>
+          <ul className="space-y-2 text-sm opacity-60">
+            <li>Email: <a href="mailto:info@cloudcompass.com.au" className="hover:opacity-100">info@cloudcompass.com.au</a></li>
+            <li>Newsletter: <a href="https://algorhythm-au.beehiiv.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-100">Algorhythm AU</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Disclaimer</h3>
+          <p className="text-xs opacity-40 leading-relaxed">
+            Pricing shown is approximate based on public cloud pricing pages. Always verify with the official provider. Rates change frequently. Not financial advice.
+          </p>
         </div>
       </div>
-    </footer>
-  );
-};
+      <div className="mt-8 pt-6 border-t border-gray-700 text-center text-xs opacity-30">
+        © {new Date().getFullYear()} CloudCompass · AWS · Azure · Google Cloud · Australian Sovereign Cloud
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

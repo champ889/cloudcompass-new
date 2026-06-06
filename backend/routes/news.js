@@ -238,6 +238,27 @@ async function fetchAllFeeds() {
     .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 }
 
+// Topic keyword sets for page-specific filtering
+const TOPIC_KEYWORDS = {
+  networking: [
+    'vpc', 'vnet', 'load balancer', 'cdn', 'dns', 'vpn', 'firewall', 'nat',
+    'egress', 'gateway', 'subnet', 'peering', 'transit', 'direct connect',
+    'expressroute', 'interconnect', 'cloudfront', 'waf', 'ddos', 'routing',
+    'private link', 'private endpoint', 'nsg', 'flow log',
+    'kubernetes', 'eks', 'aks', 'gke', 'cluster', 'node pool', 'pod', 'helm',
+    'istio', 'cilium', 'ebpf', 'cni', 'karpenter', 'autoscal', 'ingress',
+    'service mesh', 'network policy', 'containerd', 'kubelet',
+  ],
+  ai: [
+    'gpu', 'h100', 'h200', 'a100', 'b200', 'b300', 'blackwell', 'hopper',
+    'nvidia', 'p4', 'p5', 'p6', 'inferenc', 'training', 'accelerat',
+    'cuda', 'tensor', 'infiniband', 'efa', 'nccl', 'sagemaker', 'hyperpod',
+    'capacity block', 'gpu instance', 'gpu cluster', 'ai infrastructure',
+    'llm', 'foundation model', 'generative ai', 'machine learning',
+    'deep learning', 'vertex ai', 'bedrock', 'openai',
+  ],
+};
+
 Router.get('/', async (req, res) => {
   try {
     const now = Date.now();
@@ -249,7 +270,20 @@ Router.get('/', async (req, res) => {
       cache.lastFetched = now;
     }
 
-    res.json({ lastUpdated: new Date(cache.lastFetched).toISOString(), items: cache.data });
+    let items = cache.data;
+
+    // Filter by topic if requested: ?topic=networking or ?topic=ai
+    const { topic } = req.query;
+    if (topic && TOPIC_KEYWORDS[topic]) {
+      const kws = TOPIC_KEYWORDS[topic];
+      items = items.filter(i =>
+        kws.some(kw => (i.title || '').toLowerCase().includes(kw) ||
+                        (i.snippet || '').toLowerCase().includes(kw) ||
+                        (i.label || '').toLowerCase().includes(kw))
+      );
+    }
+
+    res.json({ lastUpdated: new Date(cache.lastFetched).toISOString(), items });
   } catch (err) {
     console.error('Error fetching news:', err);
     res.status(500).json({ error: 'Failed to fetch news' });
