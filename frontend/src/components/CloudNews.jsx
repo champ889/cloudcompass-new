@@ -14,7 +14,7 @@ function timeAgo(dateStr) {
   return 'Just now';
 }
 
-const CloudNews = () => {
+const CloudNews = ({ topic, title = "Cloud Updates" }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -40,7 +40,7 @@ const CloudNews = () => {
   return (
     <section id="news" className="py-20">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-3">Cloud Updates</h2>
+        <h2 className="text-3xl font-bold mb-3">{title}</h2>
         <p className="opacity-60 max-w-2xl mx-auto">
           {topic === 'networking' ? 'Latest networking and Kubernetes updates from AWS, Azure, and Google Cloud.' : topic === 'ai' ? 'Latest GPU, AI infrastructure, and inference updates from AWS, Azure, and Google Cloud.' : 'Latest cloud updates across networking, Kubernetes, and AI.'} Refreshed every 6 hours.
         </p>
