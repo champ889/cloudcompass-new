@@ -23,7 +23,8 @@ const CloudNews = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    fetch('/api/news')
+    const url = topic ? `/api/news?topic=${topic}` : '/api/news';
+    fetch(url)
       .then(r => { if (!r.ok) throw new Error('Failed to fetch'); return r.json(); })
       .then(d => {
         setItems(d.items || []);
@@ -31,7 +32,7 @@ const CloudNews = () => {
         setLoading(false);
       })
       .catch(e => { setError(e.message); setLoading(false); });
-  }, []);
+  }, [topic]);
 
   const filtered = filter === 'All' ? items : items.filter(i => i.provider === filter);
   const visible = showAll ? filtered : filtered.slice(0, 12);
@@ -41,7 +42,7 @@ const CloudNews = () => {
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold mb-3">Cloud Updates</h2>
         <p className="opacity-60 max-w-2xl mx-auto">
-          Latest networking, Kubernetes, and GPU updates from AWS, Azure, and Google Cloud — refreshed every 6 hours.
+          {topic === 'networking' ? 'Latest networking and Kubernetes updates from AWS, Azure, and Google Cloud.' : topic === 'ai' ? 'Latest GPU, AI infrastructure, and inference updates from AWS, Azure, and Google Cloud.' : 'Latest cloud updates across networking, Kubernetes, and AI.'} Refreshed every 6 hours.
         </p>
         {lastUpdated && (
           <p className="text-xs opacity-30 mt-2">
