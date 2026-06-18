@@ -23,7 +23,7 @@ function timeAgo(dateStr) {
   return 'Just now';
 }
 
-const CloudNews = ({ topic, title = "Cloud Updates" }) => {
+const CloudNews = ({ topic, title = 'Cloud Updates' }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,43 +32,46 @@ const CloudNews = ({ topic, title = "Cloud Updates" }) => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+    setFilter('All');
     const url = topic ? `/api/news?topic=${topic}` : '/api/news';
     fetch(url)
       .then(r => { if (!r.ok) throw new Error('Failed to fetch'); return r.json(); })
-      .then(d => {
-        setItems(d.items || []);
-        setLastUpdated(d.lastUpdated);
-        setLoading(false);
-      })
+      .then(d => { setItems(d.items || []); setLastUpdated(d.lastUpdated); setLoading(false); })
       .catch(e => { setError(e.message); setLoading(false); });
   }, [topic]);
 
+  const providerList = ['All', ...Array.from(new Set(items.map(i => i.provider))).sort()];
   const filtered = filter === 'All' ? items : items.filter(i => i.provider === filter);
   const visible = showAll ? filtered : filtered.slice(0, 12);
 
+  const subtitle = topic === 'networking'
+    ? 'Latest networking updates from AWS, Azure, and Google Cloud.'
+    : topic === 'ai'
+    ? 'Latest GPU, AI infrastructure, and inference updates from AWS, Azure, and Google Cloud.'
+    : topic === 'kubernetes'
+    ? 'Latest Kubernetes, CNCF, and cloud native updates from the community.'
+    : 'Latest cloud updates.';
+
   return (
-    <section id="news" className="py-20">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-3">{title}</h2>
-        <p className="opacity-60 max-w-2xl mx-auto">
-          {topic === 'networking' ? 'Latest networking and Kubernetes updates from AWS, Azure, and Google Cloud.' : topic === 'ai' ? 'Latest GPU, AI infrastructure, and inference updates from AWS, Azure, and Google Cloud.' : topic === 'kubernetes' ? 'Latest Kubernetes, CNCF, and cloud native updates from the community.' : 'Latest cloud updates.'} Refreshed every 6 hours.
-        </p>
+    <section id="news" className="py-16">
+      <div className="text-center mb-10">
+        <h2 className="text-2xl font-bold mb-2">{title}</h2>
+        <p className="opacity-60 text-sm max-w-xl mx-auto">{subtitle} Refreshed every 6 hours.</p>
         {lastUpdated && (
-          <p className="text-xs opacity-30 mt-2">
+          <p className="text-xs opacity-30 mt-1">
             Last refreshed: {new Date(lastUpdated).toLocaleString('en-AU')}
           </p>
         )}
       </div>
 
-      {/* Filter tabs */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
-        const providerList = ['All', ...Array.from(new Set(items.map(i => i.provider))).sort()];
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
         {providerList.map(p => (
           <button
             key={p}
             onClick={() => { setFilter(p); setShowAll(false); }}
             className={`service-pill ${filter === p ? 'active' : ''}`}
-            style={filter === p && p !== 'All' ? { borderColor: PROVIDER_COLORS[p], color: PROVIDER_COLORS[p] } : {}}
+            style={filter === p && p !== 'All' ? { borderColor: PROVIDER_COLORS[p] || '#888', color: PROVIDER_COLORS[p] || '#888' } : {}}
           >
             {p}
           </button>
@@ -76,79 +79,54 @@ const CloudNews = ({ topic, title = "Cloud Updates" }) => {
       </div>
 
       {loading && (
-        <div className="text-center py-20 opacity-60">
+        <div className="text-center py-16 opacity-60">
           <div className="inline-block w-6 h-6 border-2 border-blue-400 border-t-transparent rounded-full animate-spin mb-3" />
-          <p>Fetching latest updates...</p>
+          <p className="text-sm">Fetching latest updates...</p>
         </div>
       )}
 
-      {error && (
-        <div className="text-center py-20 text-red-400">
-          Failed to load updates. Check back soon.
-        </div>
-      )}
+      {error && <div className="text-center py-16 text-red-400 text-sm">Failed to load updates. Check back soon.</div>}
 
       {!loading && !error && filtered.length === 0 && (
-        <div className="text-center py-20 opacity-40">No updates found for this provider.</div>
+        <div className="text-center py-16 opacity-40 text-sm">No updates found.</div>
       )}
 
       {!loading && !error && filtered.length > 0 && (
         <>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {visible.map((item, i) => (
               <a
                 key={i}
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="provider-card rounded-xl p-5 shadow hover:shadow-lg transition-all hover:-translate-y-0.5 flex flex-col"
-                style={{ borderLeftColor: PROVIDER_COLORS[item.provider], borderLeftWidth: 3, textDecoration: 'none' }}
+                className="provider-card rounded-xl p-4 shadow hover:shadow-lg transition-all hover:-translate-y-0.5 flex flex-col no-underline"
+                style={{ borderLeftColor: PROVIDER_COLORS[item.provider] || '#888', borderLeftWidth: 3 }}
               >
-                {/* Header row */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span
                     className="text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded"
-                    style={{ backgroundColor: PROVIDER_COLORS[item.provider] + '22', color: PROVIDER_COLORS[item.provider] }}
+                    style={{ backgroundColor: (PROVIDER_COLORS[item.provider] || '#888') + '22', color: PROVIDER_COLORS[item.provider] || '#888' }}
                   >
                     {item.provider}
                   </span>
                   <span className="text-xs opacity-40">{timeAgo(item.date)}</span>
                 </div>
-
-                {/* Title */}
-                <h3 className="text-sm font-semibold leading-snug mb-2">
-                  {item.title}
-                </h3>
-
-                {/* Source label */}
+                <h3 className="text-sm font-semibold leading-snug mb-1">{item.title}</h3>
                 <p className="text-xs opacity-40 mb-2">{item.label}</p>
-
-                {/* Snippet — always shown */}
                 {item.snippet && (
-                  <p className="text-xs opacity-60 leading-relaxed flex-1 line-clamp-3">
-                    {item.snippet}
-                  </p>
+                  <p className="text-xs opacity-60 leading-relaxed flex-1 line-clamp-3">{item.snippet}</p>
                 )}
-
-                {/* Read more */}
-                <p
-                  className="inline-block mt-3 text-xs font-medium"
-                  style={{ color: PROVIDER_COLORS[item.provider] }}
-                >
+                <p className="mt-3 text-xs font-medium" style={{ color: PROVIDER_COLORS[item.provider] || '#888' }}>
                   Read more →
                 </p>
               </a>
             ))}
           </div>
-
-          {/* Show more / less */}
           {filtered.length > 12 && (
-            <div className="text-center mt-8">
-              <button
-                onClick={() => setShowAll(!showAll)}
-                className="service-pill px-6"
-              >
-                {showAll ? `Show less` : `Show all ${filtered.length} updates`}
+            <div className="text-center mt-6">
+              <button onClick={() => setShowAll(!showAll)} className="service-pill px-6">
+                {showAll ? 'Show less' : `Show all ${filtered.length} updates`}
               </button>
             </div>
           )}
