@@ -189,10 +189,81 @@ const FEEDS = [
     topic: 'ai',
     alwaysInclude: false,
   },
+
+  // ── KUBERNETES — Community & Ecosystem ───────────────────────────────────
+  {
+    provider: 'Kubernetes', color: '#326CE5',
+    url: 'https://kubernetes.io/feed.xml',
+    label: 'Kubernetes Official Blog',
+    topic: 'kubernetes',
+    alwaysInclude: true,
+  },
+  {
+    provider: 'CNCF', color: '#446CA9',
+    url: 'https://www.cncf.io/feed/',
+    label: 'CNCF Blog',
+    topic: 'kubernetes',
+    alwaysInclude: true,
+  },
+  {
+    provider: 'CNCF', color: '#446CA9',
+    url: 'https://contribute.cncf.io/feed.xml',
+    label: 'CNCF Contributors Blog',
+    topic: 'kubernetes',
+    alwaysInclude: true,
+  },
+  {
+    provider: 'The New Stack', color: '#00B4A0',
+    url: 'https://thenewstack.io/kubernetes/feed',
+    label: 'The New Stack — Kubernetes',
+    topic: 'kubernetes',
+    alwaysInclude: false,
+  },
+  {
+    provider: 'The New Stack', color: '#00B4A0',
+    url: 'https://thenewstack.io/cloud-native/feed',
+    label: 'The New Stack — Cloud Native',
+    topic: 'kubernetes',
+    alwaysInclude: false,
+  },
+  {
+    provider: 'Learnk8s', color: '#F4A261',
+    url: 'https://learnk8s.io/rss.xml',
+    label: 'Learnk8s Blog',
+    topic: 'kubernetes',
+    alwaysInclude: true,
+  },
+  {
+    provider: 'KubeWeekly', color: '#326CE5',
+    url: 'https://us10.campaign-archive.com/feed?u=3885586f8f1175194017967d6&id=11c1b8bcb2',
+    label: 'KubeWeekly Newsletter',
+    topic: 'kubernetes',
+    alwaysInclude: true,
+  },
+  {
+    provider: 'Giant Swarm', color: '#00C4B4',
+    url: 'https://www.giantswarm.io/blog/rss.xml',
+    label: 'Giant Swarm Blog',
+    topic: 'kubernetes',
+    alwaysInclude: false,
+  },
 ];
 
 // Keywords for secondary filtering on non-alwaysInclude feeds
-const NETWORKING_KEYWORDS = [
+const KUBERNETES_KEYWORDS = [
+  'kubernetes', 'k8s', 'kubectl', 'kubeadm', 'kubelet', 'kube-proxy',
+  'pod', 'deployment', 'statefulset', 'daemonset', 'replicaset',
+  'namespace', 'helm', 'operator', 'custom resource', 'crd',
+  'cluster', 'node pool', 'control plane', 'etcd', 'api server',
+  'ingress', 'service mesh', 'istio', 'linkerd', 'cilium', 'ebpf',
+  'cni', 'csi', 'karpenter', 'cluster autoscaler', 'hpa', 'vpa',
+  'argo', 'flux', 'gitops', 'tekton', 'knative', 'envoy', 'prometheus',
+  'opentelemetry', 'observability', 'service account', 'rbac',
+  'network policy', 'gateway api', 'containerd', 'cri-o',
+  'cloud native', 'cncf', 'kubecon', 'multi-cluster', 'federation',
+  'eks', 'aks', 'gke', 'k3s', 'k0s', 'rancher', 'openshift',
+];
+
   // Networking services
   'vpc', 'vnet', 'virtual network', 'load balancer', 'cdn', 'dns', 'vpn',
   'firewall', 'nat gateway', 'subnet', 'peering', 'transit gateway',
@@ -230,6 +301,12 @@ function matchesKeywords(item, keywords) {
   return keywords.some(kw => text.includes(kw));
 }
 
+function getKeywordsForTopic(topic) {
+  if (topic === 'ai') return AI_KEYWORDS;
+  if (topic === 'kubernetes') return KUBERNETES_KEYWORDS;
+  return NETWORKING_KEYWORDS;
+}
+
 let cache = { data: null, lastFetched: null };
 const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 
@@ -240,7 +317,7 @@ async function fetchAllFeeds() {
     FEEDS.map(async (feed) => {
       try {
         const parsed = await parser.parseURL(feed.url);
-        const keywords = feed.topic === 'ai' ? AI_KEYWORDS : NETWORKING_KEYWORDS;
+        const keywords = getKeywordsForTopic(feed.topic);
         const filtered = parsed.items
           .filter(item => feed.alwaysInclude || matchesKeywords(item, keywords))
           .slice(0, 6)
@@ -281,6 +358,7 @@ Router.get('/', async (req, res) => {
     const { topic } = req.query;
     if (topic === 'networking') items = items.filter(i => i.topic === 'networking');
     else if (topic === 'ai') items = items.filter(i => i.topic === 'ai');
+    else if (topic === 'kubernetes') items = items.filter(i => i.topic === 'kubernetes');
 
     res.json({ lastUpdated: new Date(cache.lastFetched).toISOString(), items });
   } catch (err) {

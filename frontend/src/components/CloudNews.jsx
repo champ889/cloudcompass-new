@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-const PROVIDERS = ['All', 'AWS', 'Azure', 'GCP'];
-const PROVIDER_COLORS = { AWS: '#FF9900', Azure: '#0078D4', GCP: '#4285F4' };
+const PROVIDER_COLORS = {
+  AWS: '#FF9900',
+  Azure: '#0078D4',
+  GCP: '#4285F4',
+  Kubernetes: '#326CE5',
+  CNCF: '#446CA9',
+  'The New Stack': '#00B4A0',
+  Learnk8s: '#F4A261',
+  KubeWeekly: '#326CE5',
+  'Giant Swarm': '#00C4B4',
+};
 
 function timeAgo(dateStr) {
   if (!dateStr) return '';
@@ -42,7 +51,7 @@ const CloudNews = ({ topic, title = "Cloud Updates" }) => {
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold mb-3">{title}</h2>
         <p className="opacity-60 max-w-2xl mx-auto">
-          {topic === 'networking' ? 'Latest networking and Kubernetes updates from AWS, Azure, and Google Cloud.' : topic === 'ai' ? 'Latest GPU, AI infrastructure, and inference updates from AWS, Azure, and Google Cloud.' : 'Latest cloud updates across networking, Kubernetes, and AI.'} Refreshed every 6 hours.
+          {topic === 'networking' ? 'Latest networking and Kubernetes updates from AWS, Azure, and Google Cloud.' : topic === 'ai' ? 'Latest GPU, AI infrastructure, and inference updates from AWS, Azure, and Google Cloud.' : topic === 'kubernetes' ? 'Latest Kubernetes, CNCF, and cloud native updates from the community.' : 'Latest cloud updates.'} Refreshed every 6 hours.
         </p>
         {lastUpdated && (
           <p className="text-xs opacity-30 mt-2">
@@ -53,7 +62,8 @@ const CloudNews = ({ topic, title = "Cloud Updates" }) => {
 
       {/* Filter tabs */}
       <div className="flex flex-wrap justify-center gap-2 mb-10">
-        {PROVIDERS.map(p => (
+        const providerList = ['All', ...Array.from(new Set(items.map(i => i.provider))).sort()];
+        {providerList.map(p => (
           <button
             key={p}
             onClick={() => { setFilter(p); setShowAll(false); }}
