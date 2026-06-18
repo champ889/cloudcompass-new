@@ -6,10 +6,13 @@ const PROVIDER_COLORS = {
   GCP: '#4285F4',
   Kubernetes: '#326CE5',
   CNCF: '#446CA9',
-  'The New Stack': '#00B4A0',
-  Learnk8s: '#F4A261',
-  KubeWeekly: '#326CE5',
-  'Giant Swarm': '#00C4B4',
+  Istio: '#466BB0',
+  Cilium: '#F8C517',
+  Helm: '#0F1689',
+  Argo: '#EF7B4D',
+  Flux: '#5468FF',
+  'Gateway API': '#326CE5',
+  Karpenter: '#FF9900',
 };
 
 function timeAgo(dateStr) {

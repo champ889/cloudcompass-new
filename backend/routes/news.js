@@ -99,28 +99,68 @@ const FEEDS = [
     url: 'https://cloudblog.withgoogle.com/products/infrastructure/rss/',
     label: 'GCP Infrastructure Blog' },
 
-  // KUBERNETES COMMUNITY
+  // KUBERNETES — Official project feeds only
   { provider: 'Kubernetes', color: '#326CE5', topic: 'kubernetes', alwaysInclude: true,
     url: 'https://kubernetes.io/feed.xml',
     label: 'Kubernetes Official Blog' },
+  { provider: 'Kubernetes', color: '#326CE5', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/kubernetes/kubernetes/releases.atom',
+    label: 'Kubernetes Releases' },
+
+  // CNCF
   { provider: 'CNCF', color: '#446CA9', topic: 'kubernetes', alwaysInclude: true,
     url: 'https://www.cncf.io/feed/',
     label: 'CNCF Blog' },
-  { provider: 'CNCF', color: '#446CA9', topic: 'kubernetes', alwaysInclude: true,
-    url: 'https://contribute.cncf.io/feed.xml',
-    label: 'CNCF Contributors Blog' },
-  { provider: 'The New Stack', color: '#00B4A0', topic: 'kubernetes', alwaysInclude: false,
-    url: 'https://thenewstack.io/kubernetes/feed',
-    label: 'The New Stack - Kubernetes' },
-  { provider: 'The New Stack', color: '#00B4A0', topic: 'kubernetes', alwaysInclude: false,
-    url: 'https://thenewstack.io/cloud-native/feed',
-    label: 'The New Stack - Cloud Native' },
-  { provider: 'Learnk8s', color: '#F4A261', topic: 'kubernetes', alwaysInclude: true,
-    url: 'https://learnk8s.io/rss.xml',
-    label: 'Learnk8s Blog' },
-  { provider: 'Giant Swarm', color: '#00C4B4', topic: 'kubernetes', alwaysInclude: false,
-    url: 'https://www.giantswarm.io/blog/rss.xml',
-    label: 'Giant Swarm Blog' },
+
+  // ISTIO — Service mesh
+  { provider: 'Istio', color: '#466BB0', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://istio.io/blog/index.xml',
+    label: 'Istio Blog' },
+  { provider: 'Istio', color: '#466BB0', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/istio/istio/releases.atom',
+    label: 'Istio Releases' },
+
+  // CILIUM — eBPF networking & service mesh
+  { provider: 'Cilium', color: '#F8C517', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://cilium.io/blog/rss.xml',
+    label: 'Cilium Blog' },
+  { provider: 'Cilium', color: '#F8C517', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/cilium/cilium/releases.atom',
+    label: 'Cilium Releases' },
+
+  // HELM — Package manager
+  { provider: 'Helm', color: '#0F1689', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://helm.sh/blog/index.xml',
+    label: 'Helm Blog' },
+  { provider: 'Helm', color: '#0F1689', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/helm/helm/releases.atom',
+    label: 'Helm Releases' },
+
+  // ARGO CD — GitOps
+  { provider: 'Argo', color: '#EF7B4D', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://blog.argoproj.io/feed',
+    label: 'Argo Blog' },
+  { provider: 'Argo', color: '#EF7B4D', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/argoproj/argo-cd/releases.atom',
+    label: 'Argo CD Releases' },
+
+  // FLUX — GitOps
+  { provider: 'Flux', color: '#5468FF', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://fluxcd.io/blog/index.xml',
+    label: 'Flux Blog' },
+  { provider: 'Flux', color: '#5468FF', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/fluxcd/flux2/releases.atom',
+    label: 'Flux Releases' },
+
+  // GATEWAY API — Official Kubernetes networking
+  { provider: 'Gateway API', color: '#326CE5', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/kubernetes-sigs/gateway-api/releases.atom',
+    label: 'Gateway API Releases' },
+
+  // KARPENTER — Node autoscaler
+  { provider: 'Karpenter', color: '#FF9900', topic: 'kubernetes', alwaysInclude: true,
+    url: 'https://github.com/aws/karpenter-provider-aws/releases.atom',
+    label: 'Karpenter Releases' },
 ];
 
 const NETWORKING_KEYWORDS = [
