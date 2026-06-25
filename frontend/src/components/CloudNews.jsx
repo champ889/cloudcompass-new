@@ -13,6 +13,11 @@ const PROVIDER_COLORS = {
   Flux: '#5468FF',
   'Gateway API': '#326CE5',
   Karpenter: '#FF9900',
+  'FinOps Foundation': '#0095DA',
+  'AWS FinOps': '#FF9900',
+  'Azure FinOps': '#0078D4',
+  'GCP FinOps': '#4285F4',
+  FOCUS: '#0095DA',
 };
 
 function timeAgo(dateStr) {
@@ -54,6 +59,8 @@ const CloudNews = ({ topic, title = 'Cloud Updates' }) => {
     ? 'Latest GPU, AI infrastructure, and inference updates from AWS, Azure, and Google Cloud.'
     : topic === 'kubernetes'
     ? 'Latest Kubernetes, CNCF, and cloud native updates from the community.'
+    : topic === 'finops'
+    ? 'Latest FinOps, cloud cost management, and FOCUS spec updates from official sources.'
     : 'Latest cloud updates.';
 
   return (

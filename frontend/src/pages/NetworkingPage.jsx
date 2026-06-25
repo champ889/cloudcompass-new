@@ -8,6 +8,7 @@ import CloudNews from '../components/CloudNews';
 const NEWS_TABS = [
   { key: 'networking', label: '🌐 Networking News' },
   { key: 'kubernetes', label: '☸️ Kubernetes News' },
+  { key: 'finops', label: '💰 FinOps News' },
 ];
 
 const NetworkingPage = () => {
@@ -51,6 +52,12 @@ const NetworkingPage = () => {
           <CloudNews
             topic="kubernetes"
             title="Kubernetes & Cloud Native News"
+          />
+        )}
+        {newsTab === 'finops' && (
+          <CloudNews
+            topic="finops"
+            title="FinOps & Cloud Cost News"
           />
         )}
       </div>

@@ -161,6 +161,36 @@ const FEEDS = [
   { provider: 'Karpenter', color: '#FF9900', topic: 'kubernetes', alwaysInclude: true,
     url: 'https://github.com/aws/karpenter-provider-aws/releases.atom',
     label: 'Karpenter Releases' },
+
+  // FINOPS FOUNDATION — Official
+  { provider: 'FinOps Foundation', color: '#0095DA', topic: 'finops', alwaysInclude: true,
+    url: 'https://www.finops.org/feed/',
+    label: 'FinOps Foundation Insights' },
+
+  // AWS CLOUD FINANCIAL MANAGEMENT
+  { provider: 'AWS FinOps', color: '#FF9900', topic: 'finops', alwaysInclude: true,
+    url: 'https://aws.amazon.com/blogs/aws-cloud-financial-management/feed/',
+    label: 'AWS Cloud Financial Management' },
+
+  // AZURE FINOPS BLOG
+  { provider: 'Azure FinOps', color: '#0078D4', topic: 'finops', alwaysInclude: true,
+    url: 'https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=FinOpsBlog',
+    label: 'Azure FinOps Blog' },
+
+  // GCP COST MANAGEMENT
+  { provider: 'GCP FinOps', color: '#4285F4', topic: 'finops', alwaysInclude: false,
+    url: 'https://cloudblog.withgoogle.com/products/cost-management/rss/',
+    label: 'GCP Cost Management Blog' },
+
+  // FOCUS SPEC — Open Cost & Usage Specification (GitHub releases)
+  { provider: 'FOCUS', color: '#0095DA', topic: 'finops', alwaysInclude: true,
+    url: 'https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/releases.atom',
+    label: 'FOCUS Specification Releases' },
+
+  // AWS COST EXPLORER / WHAT'S NEW (filtered)
+  { provider: 'AWS FinOps', color: '#FF9900', topic: 'finops', alwaysInclude: false,
+    url: 'https://aws.amazon.com/about-aws/whats-new/recent/feed/',
+    label: "AWS What's New (FinOps)" },
 ];
 
 const NETWORKING_KEYWORDS = [
@@ -204,9 +234,25 @@ const KUBERNETES_KEYWORDS = [
   'eks', 'aks', 'gke', 'k3s', 'k0s', 'rancher', 'openshift',
 ];
 
+const FINOPS_KEYWORDS = [
+  'finops', 'fin ops', 'cloud cost', 'cost optimization', 'cost management',
+  'cloud financial', 'cloud spend', 'cloud savings', 'reserved instance',
+  'savings plan', 'spot instance', 'rightsizing', 'right-sizing',
+  'cost allocation', 'cost governance', 'cloud budget', 'cost anomaly',
+  'unit economics', 'chargeback', 'showback', 'tagging strategy',
+  'cost explorer', 'cost and usage', 'cur ', 'focus spec', 'billing',
+  'cloud economics', 'waste elimination', 'idle resource', 'commitment',
+  'discount', 'graviton', 'arm instance', 'cost visibility',
+  'finops foundation', 'finops x', 'state of finops', 'focus 1.',
+  'cost efficiency', 'cloud roi', 'cloud value', 'cost forecast',
+  'cost anomaly detection', 'savings plans coverage', 'finops agent',
+  'token economics', 'tokenomics', 'ai cost', 'ai spend',
+];
+
 function getKeywords(topic) {
   if (topic === 'ai') return AI_KEYWORDS;
   if (topic === 'kubernetes') return KUBERNETES_KEYWORDS;
+  if (topic === 'finops') return FINOPS_KEYWORDS;
   return NETWORKING_KEYWORDS;
 }
 
@@ -267,6 +313,7 @@ Router.get('/', async function(req, res) {
     if (topic === 'networking') items = items.filter(function(i) { return i.topic === 'networking'; });
     else if (topic === 'ai') items = items.filter(function(i) { return i.topic === 'ai'; });
     else if (topic === 'kubernetes') items = items.filter(function(i) { return i.topic === 'kubernetes'; });
+    else if (topic === 'finops') items = items.filter(function(i) { return i.topic === 'finops'; });
     res.json({ lastUpdated: new Date(cache.lastFetched).toISOString(), items: items });
   } catch (err) {
     console.error('Error fetching news:', err);
