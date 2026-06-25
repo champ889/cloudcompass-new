@@ -167,30 +167,45 @@ const FEEDS = [
     url: 'https://www.finops.org/feed/',
     label: 'FinOps Foundation Insights' },
 
+  // FOCUS SPEC — open billing standard blog
+  { provider: 'FOCUS', color: '#0095DA', topic: 'finops', alwaysInclude: true,
+    url: 'https://focus.finops.org/feed/',
+    label: 'FOCUS Spec Blog' },
+
+  // FOCUS GitHub releases
+  { provider: 'FOCUS', color: '#0095DA', topic: 'finops', alwaysInclude: true,
+    url: 'https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/releases.atom',
+    label: 'FOCUS Specification Releases' },
+
   // AWS CLOUD FINANCIAL MANAGEMENT
   { provider: 'AWS FinOps', color: '#FF9900', topic: 'finops', alwaysInclude: true,
     url: 'https://aws.amazon.com/blogs/aws-cloud-financial-management/feed/',
     label: 'AWS Cloud Financial Management' },
+
+  // AWS BEDROCK — AI cost management
+  { provider: 'AWS FinOps', color: '#FF9900', topic: 'finops', alwaysInclude: false,
+    url: 'https://aws.amazon.com/blogs/machine-learning/feed/',
+    label: 'AWS ML Blog (AI Cost)' },
+
+  // AWS WHAT'S NEW filtered for FinOps
+  { provider: 'AWS FinOps', color: '#FF9900', topic: 'finops', alwaysInclude: false,
+    url: 'https://aws.amazon.com/about-aws/whats-new/recent/feed/',
+    label: "AWS What's New (FinOps)" },
 
   // AZURE FINOPS BLOG
   { provider: 'Azure FinOps', color: '#0078D4', topic: 'finops', alwaysInclude: true,
     url: 'https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=FinOpsBlog',
     label: 'Azure FinOps Blog' },
 
+  // AZURE COST MANAGEMENT
+  { provider: 'Azure FinOps', color: '#0078D4', topic: 'finops', alwaysInclude: false,
+    url: 'https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=AzureCostManagementBlog',
+    label: 'Azure Cost Management Blog' },
+
   // GCP COST MANAGEMENT
   { provider: 'GCP FinOps', color: '#4285F4', topic: 'finops', alwaysInclude: false,
     url: 'https://cloudblog.withgoogle.com/products/cost-management/rss/',
     label: 'GCP Cost Management Blog' },
-
-  // FOCUS SPEC — Open Cost & Usage Specification (GitHub releases)
-  { provider: 'FOCUS', color: '#0095DA', topic: 'finops', alwaysInclude: true,
-    url: 'https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/releases.atom',
-    label: 'FOCUS Specification Releases' },
-
-  // AWS COST EXPLORER / WHAT'S NEW (filtered)
-  { provider: 'AWS FinOps', color: '#FF9900', topic: 'finops', alwaysInclude: false,
-    url: 'https://aws.amazon.com/about-aws/whats-new/recent/feed/',
-    label: "AWS What's New (FinOps)" },
 ];
 
 const NETWORKING_KEYWORDS = [
@@ -235,18 +250,29 @@ const KUBERNETES_KEYWORDS = [
 ];
 
 const FINOPS_KEYWORDS = [
+  // Core FinOps
   'finops', 'fin ops', 'cloud cost', 'cost optimization', 'cost management',
   'cloud financial', 'cloud spend', 'cloud savings', 'reserved instance',
   'savings plan', 'spot instance', 'rightsizing', 'right-sizing',
   'cost allocation', 'cost governance', 'cloud budget', 'cost anomaly',
   'unit economics', 'chargeback', 'showback', 'tagging strategy',
-  'cost explorer', 'cost and usage', 'cur ', 'focus spec', 'billing',
+  'cost explorer', 'cost and usage', 'cur ', 'billing',
   'cloud economics', 'waste elimination', 'idle resource', 'commitment',
   'discount', 'graviton', 'arm instance', 'cost visibility',
-  'finops foundation', 'finops x', 'state of finops', 'focus 1.',
+  'finops foundation', 'finops x', 'state of finops',
   'cost efficiency', 'cloud roi', 'cloud value', 'cost forecast',
-  'cost anomaly detection', 'savings plans coverage', 'finops agent',
-  'token economics', 'tokenomics', 'ai cost', 'ai spend',
+  'cost anomaly detection', 'savings plans coverage',
+  // FOCUS spec
+  'focus spec', 'focus 1.', 'finops open cost', 'cost and usage specification',
+  'billing dataset', 'cost schema', 'billing standard', 'finops toolkit',
+  // AI FinOps
+  'finops for ai', 'ai cost', 'ai spend', 'ai finops',
+  'token economics', 'tokenomics', 'tokenomicon',
+  'finops agent', 'ai cost management', 'ai cost optimization',
+  'bedrock cost', 'vertex ai cost', 'llm cost', 'inference cost',
+  'gpu cost', 'ai billing', 'model cost', 'ai budget',
+  'token usage', 'token spend', 'ai financial', 'ai value',
+  'cost per token', 'cost per inference', 'ai roi',
 ];
 
 function getKeywords(topic) {

@@ -16,6 +16,7 @@ const PROVIDER_COLORS = {
   'FinOps Foundation': '#0095DA',
   'AWS FinOps': '#FF9900',
   'Azure FinOps': '#0078D4',
+  'Azure Cost Management': '#0078D4',
   'GCP FinOps': '#4285F4',
   FOCUS: '#0095DA',
 };
