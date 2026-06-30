@@ -19,6 +19,9 @@ const PROVIDER_COLORS = {
   'Azure Cost Management': '#0078D4',
   'GCP FinOps': '#4285F4',
   FOCUS: '#0095DA',
+  iTnews: '#E4002B',
+  'CRN Australia': '#003366',
+  'Computerworld AU': '#0073C6',
 };
 
 function timeAgo(dateStr) {
@@ -62,6 +65,8 @@ const CloudNews = ({ topic, title = 'Cloud Updates' }) => {
     ? 'Latest Kubernetes, CNCF, and cloud native updates from the community.'
     : topic === 'finops'
     ? 'Latest FinOps, cloud cost management, and FOCUS spec updates from official sources.'
+    : topic === 'australia'
+    ? 'Latest Australian cloud, data centre, and technology industry news.'
     : 'Latest cloud updates.';
 
   return (

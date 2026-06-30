@@ -9,6 +9,7 @@ const NEWS_TABS = [
   { key: 'networking', label: '🌐 Networking News' },
   { key: 'kubernetes', label: '☸️ Kubernetes News' },
   { key: 'finops', label: '💰 FinOps News' },
+  { key: 'australia', label: '🇦🇺 Australia News' },
 ];
 
 const NetworkingPage = () => {
@@ -43,22 +44,16 @@ const NetworkingPage = () => {
         </div>
 
         {newsTab === 'networking' && (
-          <CloudNews
-            topic="networking"
-            title="Networking Updates"
-          />
+          <CloudNews topic="networking" title="Networking Updates" />
         )}
         {newsTab === 'kubernetes' && (
-          <CloudNews
-            topic="kubernetes"
-            title="Kubernetes & Cloud Native News"
-          />
+          <CloudNews topic="kubernetes" title="Kubernetes & Cloud Native News" />
         )}
         {newsTab === 'finops' && (
-          <CloudNews
-            topic="finops"
-            title="FinOps & Cloud Cost News"
-          />
+          <CloudNews topic="finops" title="FinOps & Cloud Cost News" />
+        )}
+        {newsTab === 'australia' && (
+          <CloudNews topic="australia" title="Australian Cloud Industry News" />
         )}
       </div>
 

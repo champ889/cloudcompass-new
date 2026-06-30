@@ -206,6 +206,30 @@ const FEEDS = [
   { provider: 'GCP FinOps', color: '#4285F4', topic: 'finops', alwaysInclude: false,
     url: 'https://cloudblog.withgoogle.com/products/cost-management/rss/',
     label: 'GCP Cost Management Blog' },
+
+  // AUSTRALIAN CLOUD INDUSTRY
+  { provider: 'iTnews', color: '#E4002B', topic: 'australia', alwaysInclude: false,
+    url: 'https://www.itnews.com.au/RSS/rss.ashx',
+    label: 'iTnews Australia' },
+  { provider: 'CRN Australia', color: '#003366', topic: 'australia', alwaysInclude: false,
+    url: 'https://www.crn.com.au/rss/rss.ashx',
+    label: 'CRN Australia' },
+  { provider: 'Computerworld AU', color: '#0073C6', topic: 'australia', alwaysInclude: false,
+    url: 'https://www.computerworld.com/au/feed/',
+    label: 'Computerworld Australia' },
+];
+
+const AUSTRALIA_KEYWORDS = [
+  'australia', 'australian', 'sydney', 'melbourne', 'canberra', 'perth',
+  'brisbane', 'adelaide', 'tasmania', 'queensland', 'nsw', 'victoria',
+  'nextdc', 'aussie', 'apac', 'asia-pacific', 'asia pacific', 'anz',
+  'sovereign cloud', 'data sovereignty', 'data residency',
+  'digital transformation agency', 'dta ', 'australian government',
+  'apra', 'asd', 'essential eight', 'irap', 'protected cloud',
+  'australian computer society', 'acs ', 'iot australia',
+  'firmus', 'sharon ai', 'micron21', 'iren', 'macquarie cloud',
+  'aws sydney', 'azure australia', 'google cloud australia',
+  'australia east', 'ap-southeast-2', 'australia-southeast',
 ];
 
 const NETWORKING_KEYWORDS = [
@@ -279,6 +303,7 @@ function getKeywords(topic) {
   if (topic === 'ai') return AI_KEYWORDS;
   if (topic === 'kubernetes') return KUBERNETES_KEYWORDS;
   if (topic === 'finops') return FINOPS_KEYWORDS;
+  if (topic === 'australia') return AUSTRALIA_KEYWORDS;
   return NETWORKING_KEYWORDS;
 }
 
@@ -340,6 +365,7 @@ Router.get('/', async function(req, res) {
     else if (topic === 'ai') items = items.filter(function(i) { return i.topic === 'ai'; });
     else if (topic === 'kubernetes') items = items.filter(function(i) { return i.topic === 'kubernetes'; });
     else if (topic === 'finops') items = items.filter(function(i) { return i.topic === 'finops'; });
+    else if (topic === 'australia') items = items.filter(function(i) { return i.topic === 'australia'; });
     res.json({ lastUpdated: new Date(cache.lastFetched).toISOString(), items: items });
   } catch (err) {
     console.error('Error fetching news:', err);
